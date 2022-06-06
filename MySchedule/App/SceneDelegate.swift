@@ -15,10 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
         guard let startWindow = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: startWindow)
-        window.rootViewController = ViewController()
-        window.makeKeyAndVisible()
-        window.overrideUserInterfaceStyle = .light // Поддерживаем светлую тему на айфоне 
+        window = UIWindow(windowScene: startWindow)
+        window?.rootViewController = MainTabBarController()
+        window?.makeKeyAndVisible()
+        window?.overrideUserInterfaceStyle = .light // Поддержка светлой темы 
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		B579A6E0284E04B10047923D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6DF284E04B10047923D /* AppDelegate.swift */; };
 		B579A6E2284E04B10047923D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6E1284E04B10047923D /* SceneDelegate.swift */; };
-		B579A6E4284E04B10047923D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6E3284E04B10047923D /* ViewController.swift */; };
+		B579A6E4284E04B10047923D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6E3284E04B10047923D /* MainTabBarController.swift */; };
 		B579A6E9284E04B40047923D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B579A6E8284E04B40047923D /* Assets.xcassets */; };
 		B579A6EC284E04B40047923D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B579A6EA284E04B40047923D /* LaunchScreen.storyboard */; };
+		B579A6F7284E0A940047923D /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6F6284E0A940047923D /* ScheduleVC.swift */; };
+		B579A6F9284E0AAA0047923D /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6F8284E0AAA0047923D /* TasksVC.swift */; };
+		B579A6FB284E0ABE0047923D /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A6FA284E0ABE0047923D /* ContactsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B579A6DC284E04B10047923D /* MySchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B579A6DF284E04B10047923D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B579A6E1284E04B10047923D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B579A6E3284E04B10047923D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B579A6E3284E04B10047923D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B579A6E8284E04B40047923D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B579A6EB284E04B40047923D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B579A6ED284E04B40047923D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B579A6F6284E0A940047923D /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		B579A6F8284E0AAA0047923D /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
+		B579A6FA284E0ABE0047923D /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +79,10 @@
 		B579A6F4284E06770047923D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B579A6E3284E04B10047923D /* ViewController.swift */,
+				B579A6E3284E04B10047923D /* MainTabBarController.swift */,
+				B579A6F6284E0A940047923D /* ScheduleVC.swift */,
+				B579A6F8284E0AAA0047923D /* TasksVC.swift */,
+				B579A6FA284E0ABE0047923D /* ContactsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,9 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B579A6E4284E04B10047923D /* ViewController.swift in Sources */,
+				B579A6E4284E04B10047923D /* MainTabBarController.swift in Sources */,
+				B579A6F7284E0A940047923D /* ScheduleVC.swift in Sources */,
+				B579A6F9284E0AAA0047923D /* TasksVC.swift in Sources */,
 				B579A6E0284E04B10047923D /* AppDelegate.swift in Sources */,
 				B579A6E2284E04B10047923D /* SceneDelegate.swift in Sources */,
+				B579A6FB284E0ABE0047923D /* ContactsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
