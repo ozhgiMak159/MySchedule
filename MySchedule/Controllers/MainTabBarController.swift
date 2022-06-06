@@ -14,12 +14,8 @@ class MainTabBarController: UITabBarController {
         setupTabBar()
     }
     
-    //
     private func createNavController(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
-        
-        let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage)?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
-        
-        item.titlePositionAdjustment = .init(horizontal: 0, vertical: 10) // Отпускаем вниз тектс
+        let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage), tag: 0)
         
         let navController = UINavigationController(rootViewController: vc)
         navController.tabBarItem = item
@@ -27,20 +23,19 @@ class MainTabBarController: UITabBarController {
         return navController
         
     }
-    //
+    
     private func setupTabBar() {
+        
         let scheduleVC = createNavController(vc: ScheduleViewController(), itemName: "Schedule", itemImage: "calendar.badge.clock")
         let tasksVC = createNavController(vc: TasksViewController(), itemName: "Tasks", itemImage: "text.badge.checkmark")
         let contactsVC = createNavController(vc: ContactsViewController(), itemName: "Contacts", itemImage: "rectangle.stack.person.crop")
         
-        viewControllers = [scheduleVC, tasksVC, contactsVC]
+        setViewControllers([scheduleVC, tasksVC, contactsVC], animated: true)
         
+        UITabBarItem.appearance().titlePositionAdjustment = .init(horizontal: 0, vertical: 10)
+        UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "Helvetica Neue", size: 14) as Any], for: .normal)
         
     }
     
-    
-    
-
-
 }
 
