@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    
+       
         guard let startWindow = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: startWindow)
         window?.rootViewController = MainTabBarController()

@@ -14,6 +14,9 @@ class MainTabBarController: UITabBarController {
         setupTabBar()
     }
     
+    /*
+     Установка навигейшен контроллера и табБара
+     */
     private func createNavController(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
         let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage), tag: 0)
         
