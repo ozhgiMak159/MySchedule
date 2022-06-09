@@ -37,7 +37,6 @@ class ScheduleViewController: UIViewController {
         return tableView
     }()
     
-    
     private let identifierCell = "Cell"
     
     override func viewDidLoad() {
@@ -87,7 +86,7 @@ class ScheduleViewController: UIViewController {
             showHideButton.setTitle("Open calendar", for: .normal)
         }
     }
-    //2 - 3
+  
     @objc private func addButtonTapped() {
         let scheduleOption = OptionsScheduleTableViewController()
         navigationController?.pushViewController(scheduleOption, animated: true)
@@ -142,7 +141,7 @@ extension ScheduleViewController {
     private func addSubView() {
         view.backgroundColor = .white
         title = "Schedule"
-        //2
+    
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
         view.addSubview(calendar)

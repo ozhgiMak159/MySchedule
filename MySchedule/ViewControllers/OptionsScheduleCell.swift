@@ -34,7 +34,8 @@ class OptionsScheduleCell: UITableViewCell {
         return repeatSwitch
     }()
     
-    let cellNameArray = [
+    //3 Определяем названия ячеек по номерам секции и ячеек
+   private let cellNameArray = [
         ["Date","Time"],
         ["Name","Type","Building","Audience"],
         ["Teacher Name"],
@@ -52,17 +53,17 @@ class OptionsScheduleCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // 3.1 Используем массив с данными для ячеек и иницилизируем свойства внутри ячейки
     func cellConfigure(index: IndexPath) {
         nameCellLabel.text = cellNameArray[index.section][index.row]
         
         if index == [3,0] {
             backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         }
-        
+        // ?
         if index == [4,0] {
             repeatSwitch.isHidden = false
         }
-        
     }
     
     @objc func switchChange(paramTarget: UISwitch) {

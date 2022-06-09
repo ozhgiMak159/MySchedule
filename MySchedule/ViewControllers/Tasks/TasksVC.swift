@@ -120,14 +120,13 @@ extension TasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! TasksTableViewCell
-        //1
+        // Говорим что наша ячейка выполняет действий протокола
         cell.cellTaskDelegate = self
         cell.indexPath = indexPath
         return cell
     }
 }
-
-//1
+// 2.1 А эти определенные действия будут производится здесь
 // MARK: - PressReadyTaskButtonProtocol
 extension TasksViewController: PressReadyTaskButtonProtocol {
     func readyButtonTapped(indexPath: IndexPath) {

@@ -23,10 +23,10 @@ class HeaderOptionsScheduleTableViewCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //4 Названия закголовок секции
     func headerConfigure(section: Int) {
         headerLabel.text = headerNameArray[section]
     }
-    
     
 }
 
@@ -36,10 +36,9 @@ extension HeaderOptionsScheduleTableViewCell {
     private func addSubview() {
         contentView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         headerLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        
         addSubview(headerLabel)
-       
     }
-    
     
     private func setConstraints() {
        
@@ -47,8 +46,6 @@ extension HeaderOptionsScheduleTableViewCell {
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
         ])
-
-  
     }
 }
 

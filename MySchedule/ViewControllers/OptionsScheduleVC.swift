@@ -9,16 +9,13 @@ import UIKit
 
 class OptionsScheduleTableViewController: UITableViewController {
     
-    let idOptionsScheduleCell = "idOptionsScheduleCell"
-    let idOptionsScheduleCellHeader = "idOptionsScheduleCellHeader"
+    private let idOptionsScheduleCell = "idOptionsScheduleCell"
+    private let idOptionsScheduleCellHeader = "idOptionsScheduleCellHeader"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(OptionsScheduleCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
-        tableView.register(HeaderOptionsScheduleTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleCellHeader)
+        setDelegate()
         
         title = "Optional Schedule"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
@@ -30,6 +27,7 @@ class OptionsScheduleTableViewController: UITableViewController {
         5
     }
     
+    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 2
@@ -41,6 +39,13 @@ class OptionsScheduleTableViewController: UITableViewController {
         }
     }
     
+    private func setDelegate() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(OptionsScheduleCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
+        tableView.register(HeaderOptionsScheduleTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleCellHeader)
+    }
+    // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsScheduleCell
         cell.cellConfigure(index: indexPath)
@@ -51,18 +56,18 @@ class OptionsScheduleTableViewController: UITableViewController {
         44
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        15
+    }
+    //4.1 Отображаем названия заголовок в Функции по созданию секции
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsScheduleCellHeader) as! HeaderOptionsScheduleTableViewCell
         header.headerConfigure(section: section)
         return header
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        15
-    }
-    
+    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let cell = tableView.cellForRow(at: indexPath) as! OptionsScheduleCell
         
         switch indexPath {
@@ -72,14 +77,13 @@ class OptionsScheduleTableViewController: UITableViewController {
         case [0,1]: alertTime(label: cell.nameCellLabel) { date in
             print(date)
         }
-        case [1,0]: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson")
-        case [1,1]: alertForCellName(label: cell.nameCellLabel, name: "Type lesson", placeholder: "Enter type lesson")
-        case [1,2]: alertForCellName(label: cell.nameCellLabel, name: "Building number", placeholder: "Enter number of building")
-        case [1,3]: alertForCellName(label: cell.nameCellLabel, name: "Audience number", placeholder: "Enter number of audience")
+        case [1,0]: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson")
+        case [1,1]: alertForCellInformation(label: cell.nameCellLabel, name: "Type lesson", placeholder: "Enter type lesson")
+        case [1,2]: alertForCellInformation(label: cell.nameCellLabel, name: "Building number", placeholder: "Enter number of building")
+        case [1,3]: alertForCellInformation(label: cell.nameCellLabel, name: "Audience number", placeholder: "Enter number of audience")
         default:
-            print("123")
+            break
         }
     }
-    
     
 }

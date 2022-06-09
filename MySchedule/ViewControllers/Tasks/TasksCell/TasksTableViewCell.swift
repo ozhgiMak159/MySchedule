@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class TasksTableViewCell: UITableViewCell {
     
     private let taskName = UILabel(text: "SwiftUI", font: .avenirNextDemiBold16())
@@ -24,7 +21,7 @@ class TasksTableViewCell: UITableViewCell {
         return button
     }()
     
-    //1
+    //  Создаем экземпляр протокола для доступа к методу
     weak var cellTaskDelegate: PressReadyTaskButtonProtocol?
     var indexPath: IndexPath?
         
@@ -40,7 +37,7 @@ class TasksTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //1
+    // 2 Говорим что наша кнопка выполняет действия
     @objc private func readyButtonTapped() {
         guard let indexPath = indexPath else { return }
         cellTaskDelegate?.readyButtonTapped(indexPath: indexPath)

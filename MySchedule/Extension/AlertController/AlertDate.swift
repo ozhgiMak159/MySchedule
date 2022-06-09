@@ -19,19 +19,29 @@ extension UIViewController {
         
         alert.view.addSubview(datePicker)
         
+        // Действия которые происходят после нажатия на кнопку ОК
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            /*
+             После нажатия на кнопку Ок мы должны передать нашим лейблам в ячейках значения - Даты.
+             1. Создаем форматеры дат.
+             2. Определяем текущию местоположения
+             3. В замыкании передаем - номер дня недели и саму дату выбранного дня
+             4. Передаем данные выбранного дня/месца/года в текущий лейбл в ячейки
+             */
             
+            //1
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy"
             let dateString = dateFormatter.string(from: datePicker.date)
-            
+            //2
             let calendar = Calendar.current
             let components = calendar.dateComponents([.weekday], from: datePicker.date)
             guard let weekDay = components.weekday else { return }
             let numberWeekDay = weekDay
             let date = datePicker.date as Date
+            // 3
             completionHandler(numberWeekDay,date)
-            
+            // 4
             label.text = dateString
         }
         
