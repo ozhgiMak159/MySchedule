@@ -19,14 +19,28 @@ class OptionsScheduleCell: UITableViewCell {
     
     let nameCellLabel: UILabel = {
        let label = UILabel()
-        label.text = "12345"
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var topStackView = UIStackView()
-    private var buttonStackView = UIStackView()
+    let repeatSwitch: UISwitch = {
+       let repeatSwitch = UISwitch()
+        repeatSwitch.isOn = true
+        repeatSwitch.isHidden = true
+        repeatSwitch.onTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        repeatSwitch.addTarget(self, action: #selector(switchChange), for: .valueChanged)
+        repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
+        return repeatSwitch
+    }()
+    
+    let cellNameArray = [
+        ["Date","Time"],
+        ["Name","Type","Building","Audience"],
+        ["Teacher Name"],
+        [""],
+        ["Repeat every 7 days"]
+    ]
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,6 +50,23 @@ class OptionsScheduleCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func cellConfigure(index: IndexPath) {
+        nameCellLabel.text = cellNameArray[index.section][index.row]
+        
+        if index == [3,0] {
+            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        }
+        
+        if index == [4,0] {
+            repeatSwitch.isHidden = false
+        }
+        
+    }
+    
+    @objc func switchChange(paramTarget: UISwitch) {
+        
     }
     
 }
@@ -49,9 +80,8 @@ extension OptionsScheduleCell {
         
         addSubview(backgroundViewCell)
         addSubview(nameCellLabel)
-       
+        contentView.addSubview(repeatSwitch)
     }
-    
     
     private func setConstraints() {
        
@@ -65,6 +95,11 @@ extension OptionsScheduleCell {
         NSLayoutConstraint.activate([
             nameCellLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            repeatSwitch.centerYAnchor.constraint(equalTo: centerYAnchor),
+            repeatSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
         ])
   
     }
