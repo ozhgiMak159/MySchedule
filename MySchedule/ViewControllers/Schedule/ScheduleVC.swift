@@ -1,14 +1,15 @@
 //
-//  TasksVC.swift
+//  ScheduleVC.swift
 //  MySchedule
 //
 //  Created by Maksim  on 06.06.2022.
 //
 
+
 import UIKit
 import FSCalendar
 
-class TasksViewController: UIViewController {
+class ScheduleViewController: UIViewController {
     
     private let calendar: FSCalendar = {
         let calendar = FSCalendar()
@@ -27,6 +28,8 @@ class TasksViewController: UIViewController {
         return button
     }()
     
+    private var calendarHeightConstraint: NSLayoutConstraint!
+    
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.bounces = false
@@ -34,18 +37,17 @@ class TasksViewController: UIViewController {
         return tableView
     }()
     
+    
     private let identifierCell = "Cell"
     
-    private var calendarHeightConstraint: NSLayoutConstraint!
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
         setConstrains()
         setDelegate()
+        swipeAction()
         
-        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: identifierCell)
+        tableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: identifierCell)
     }
     
     private func setDelegate() {
@@ -85,19 +87,26 @@ class TasksViewController: UIViewController {
             showHideButton.setTitle("Open calendar", for: .normal)
         }
     }
+    //2 - 3
+    @objc private func addButtonTapped() {
+        let scheduleOption = OptionsScheduleTableViewController()
+        navigationController?.pushViewController(scheduleOption, animated: true)
+    }
 
 }
+
 // MARK: - FSCalendarDelegate
-extension TasksViewController: FSCalendarDelegate {
+extension ScheduleViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeightConstraint.constant = bounds.height
         view.layoutIfNeeded()
     }
+
 }
 
 // MARK: - FSCalendarDataSource
-extension TasksViewController: FSCalendarDataSource {
+extension ScheduleViewController: FSCalendarDataSource {
  
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
@@ -105,32 +114,36 @@ extension TasksViewController: FSCalendarDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension TasksViewController: UITableViewDelegate {
+extension ScheduleViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
+    
 }
 
 // MARK: - UITableViewDataSource
-extension TasksViewController: UITableViewDataSource {
+extension ScheduleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! TasksTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! ScheduleTableViewCell
         return cell
     }
+    
+    
 }
-
-// MARK: - Set Constraints
-extension TasksViewController {
+// MARK: - ScheduleViewController Set Constraints
+extension ScheduleViewController {
     
     private func addSubView() {
         view.backgroundColor = .white
-        title = "Tasks"
+        title = "Schedule"
+        //2
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
         view.addSubview(calendar)
         view.addSubview(showHideButton)
@@ -142,7 +155,7 @@ extension TasksViewController {
         calendar.addConstraint(calendarHeightConstraint)
     
     }
-
+    
     private func setConstrains() {
         NSLayoutConstraint.activate([
             calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),

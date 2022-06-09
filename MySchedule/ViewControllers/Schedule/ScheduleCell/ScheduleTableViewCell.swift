@@ -26,8 +26,6 @@ class ScheduleTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
         setConstraints()
-        
-        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +38,8 @@ class ScheduleTableViewCell: UITableViewCell {
 extension ScheduleTableViewCell {
     
     private func addSubview() {
+        selectionStyle = .none
+        
         topStackView = UIStackView(arrangedSubviews: [lessonName,teacherName],
                                    axis: .horizontal,
                                    distribution: .fillEqually,

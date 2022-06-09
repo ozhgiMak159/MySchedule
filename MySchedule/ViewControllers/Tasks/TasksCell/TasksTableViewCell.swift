@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Закончил 5 на 16:00
+
 
 
 class TasksTableViewCell: UITableViewCell {
@@ -23,6 +23,10 @@ class TasksTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    //1
+    weak var cellTaskDelegate: PressReadyTaskButtonProtocol?
+    var indexPath: IndexPath?
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,8 +40,10 @@ class TasksTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //1
     @objc private func readyButtonTapped() {
-        print("12")
+        guard let indexPath = indexPath else { return }
+        cellTaskDelegate?.readyButtonTapped(indexPath: indexPath)
     }
     
 }

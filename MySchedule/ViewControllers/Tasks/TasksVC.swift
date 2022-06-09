@@ -1,15 +1,14 @@
 //
-//  ScheduleVC.swift
+//  TasksVC.swift
 //  MySchedule
 //
 //  Created by Maksim  on 06.06.2022.
 //
 
-
 import UIKit
 import FSCalendar
 
-class ScheduleViewController: UIViewController {
+class TasksViewController: UIViewController {
     
     private let calendar: FSCalendar = {
         let calendar = FSCalendar()
@@ -28,8 +27,6 @@ class ScheduleViewController: UIViewController {
         return button
     }()
     
-    private var calendarHeightConstraint: NSLayoutConstraint!
-    
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.bounces = false
@@ -37,17 +34,18 @@ class ScheduleViewController: UIViewController {
         return tableView
     }()
     
-    
     private let identifierCell = "Cell"
     
+    private var calendarHeightConstraint: NSLayoutConstraint!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
         setConstrains()
         setDelegate()
-        swipeAction()
         
-        tableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: identifierCell)
+        tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: identifierCell)
     }
     
     private func setDelegate() {
@@ -89,19 +87,17 @@ class ScheduleViewController: UIViewController {
     }
 
 }
-
 // MARK: - FSCalendarDelegate
-extension ScheduleViewController: FSCalendarDelegate {
+extension TasksViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeightConstraint.constant = bounds.height
         view.layoutIfNeeded()
     }
-
 }
 
 // MARK: - FSCalendarDataSource
-extension ScheduleViewController: FSCalendarDataSource {
+extension TasksViewController: FSCalendarDataSource {
  
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
@@ -109,34 +105,42 @@ extension ScheduleViewController: FSCalendarDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension ScheduleViewController: UITableViewDelegate {
-    
+extension TasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
-    
 }
 
 // MARK: - UITableViewDataSource
-extension ScheduleViewController: UITableViewDataSource {
+extension TasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! ScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! TasksTableViewCell
+        //1
+        cell.cellTaskDelegate = self
+        cell.indexPath = indexPath
         return cell
     }
-    
-    
 }
-// MARK: - ScheduleViewController Set Constraints
-extension ScheduleViewController {
+
+//1
+// MARK: - PressReadyTaskButtonProtocol
+extension TasksViewController: PressReadyTaskButtonProtocol {
+    func readyButtonTapped(indexPath: IndexPath) {
+        print("TAP")
+    }
+}
+
+// MARK: - Set Constraints
+extension TasksViewController {
     
     private func addSubView() {
         view.backgroundColor = .white
-        title = "Schedule"
+        title = "Tasks"
         
         view.addSubview(calendar)
         view.addSubview(showHideButton)
@@ -148,7 +152,7 @@ extension ScheduleViewController {
         calendar.addConstraint(calendarHeightConstraint)
     
     }
-    
+
     private func setConstrains() {
         NSLayoutConstraint.activate([
             calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
