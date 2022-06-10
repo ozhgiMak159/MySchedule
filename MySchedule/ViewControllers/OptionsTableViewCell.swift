@@ -1,13 +1,13 @@
 //
-//  OptionalTaskTableViewCell.swift
+//  OptionsTableViewCell.swift
 //  MySchedule
 //
-//  Created by Maksim  on 10.06.2022.
+//  Created by Maksim  on 09.06.2022.
 //
 
 import UIKit
 
-class OptionalTaskTableViewCell: UITableViewCell {
+class OptionsTableViewCell: UITableViewCell {
     
     let backgroundViewCell: UIView = {
         let view = UIView()
@@ -23,10 +23,19 @@ class OptionalTaskTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
+    let repeatSwitch: UISwitch = {
+       let repeatSwitch = UISwitch()
+        repeatSwitch.isOn = true
+        repeatSwitch.isHidden = true
+        repeatSwitch.onTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        repeatSwitch.addTarget(self, action: #selector(switchChange), for: .valueChanged)
+        repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
+        return repeatSwitch
+    }()
+    
     //3 Определяем названия ячеек по номерам секции и ячеек
-   private let cellNameArray = ["Date", "Lesson", "Task", ""]
-        
+  
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
@@ -38,19 +47,34 @@ class OptionalTaskTableViewCell: UITableViewCell {
     }
     
     // 3.1 Используем массив с данными для ячеек и иницилизируем свойства внутри ячейки
-    func cellConfigure(index: IndexPath) {
-        nameCellLabel.text = cellNameArray[index.section]
+    func cellScheduleConfigure(nameArray: [[String]], index: IndexPath) {
+        nameCellLabel.text = nameArray[index.section][index.row]
         
         if index == [3,0] {
             backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         }
+        // ?
+        if index == [4,0] {
+            repeatSwitch.isHidden = false
+        }
+    }
+    
+    func cellTaskConfigure(nameArray: [String], index: IndexPath) {
+        nameCellLabel.text = nameArray[index.section]
+        
+        if index == [3,0] {
+            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        }
+    }
+    
+    @objc func switchChange(paramTarget: UISwitch) {
         
     }
     
 }
 
 // MARK: - Set Constraints
-extension OptionalTaskTableViewCell {
+extension OptionsTableViewCell {
     
     private func addSubview() {
         backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
@@ -58,7 +82,7 @@ extension OptionalTaskTableViewCell {
         
         addSubview(backgroundViewCell)
         addSubview(nameCellLabel)
-       
+        contentView.addSubview(repeatSwitch)
     }
     
     private func setConstraints() {
@@ -75,6 +99,11 @@ extension OptionalTaskTableViewCell {
             nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 15)
         ])
         
+        NSLayoutConstraint.activate([
+            repeatSwitch.centerYAnchor.constraint(equalTo: centerYAnchor),
+            repeatSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
+        ])
+  
     }
 }
 

@@ -13,6 +13,7 @@ class TaskOptionalTableViewController: UITableViewController {
     private let idOptionsTaskHeader = "idOptionsTaskHeader"
     
     private  let headerNameArray = ["DATE","LESSON","TASK","COLOR"]
+    private let cellNameArray = ["Date", "Lesson", "Task", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +44,13 @@ class TaskOptionalTableViewController: UITableViewController {
     private func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(OptionalTaskTableViewCell.self, forCellReuseIdentifier: idOptionsTaskCell)
+        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsTaskCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsTaskHeader)
     }
     // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsTaskCell, for: indexPath) as! OptionalTaskTableViewCell
-        cell.cellConfigure(index: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsTaskCell, for: indexPath) as! OptionsTableViewCell
+        cell.cellTaskConfigure(nameArray: cellNameArray, index: indexPath)
         return cell
     }
     
@@ -69,7 +70,7 @@ class TaskOptionalTableViewController: UITableViewController {
     
     // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! OptionalTaskTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
         switch indexPath.section {
         case 0: alertDate(label: cell.nameCellLabel) { numberWeekday, date in

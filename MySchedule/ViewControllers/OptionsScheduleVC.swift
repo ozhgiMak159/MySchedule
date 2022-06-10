@@ -14,6 +14,14 @@ class OptionsScheduleTableViewController: UITableViewController {
     
     private  let headerNameArray = ["DATE AND TIME","LESSON","TEACHER","COLOR","PERIOD"]
     
+    private let cellNameArray = [
+         ["Date","Time"],
+         ["Name","Type","Building","Audience"],
+         ["Teacher Name"],
+         [""],
+         ["Repeat every 7 days"]
+     ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,13 +57,13 @@ class OptionsScheduleTableViewController: UITableViewController {
     private func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(OptionsScheduleCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
+        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleCellHeader)
     }
     // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsScheduleCell
-        cell.cellConfigure(index: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsTableViewCell
+        cell.cellScheduleConfigure(nameArray: cellNameArray, index: indexPath)
         return cell
     }
     
@@ -75,7 +83,7 @@ class OptionsScheduleTableViewController: UITableViewController {
     
     // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! OptionsScheduleCell
+        let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
         switch indexPath {
         case [0,0]: alertDate(label: cell.nameCellLabel) { numberWeekday, date in
