@@ -1,5 +1,5 @@
 //
-//  HeaderOptionsScheduleTableViewCell.swift
+//  HeaderOptionsTableViewCell.swift
 //  MySchedule
 //
 //  Created by Maksim  on 09.06.2022.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-class HeaderOptionsScheduleTableViewCell: UITableViewHeaderFooterView {
+class HeaderOptionsTableViewCell: UITableViewHeaderFooterView {
     
     let headerLabel = UILabel(text: "", font: .avenirNext14())
     
-    let headerNameArray = ["DATE AND TIME","LESSON","TEACHER","COLOR","PERIOD"]
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -24,14 +23,14 @@ class HeaderOptionsScheduleTableViewCell: UITableViewHeaderFooterView {
     }
     
     //4 Названия закголовок секции
-    func headerConfigure(section: Int) {
-        headerLabel.text = headerNameArray[section]
+    func headerConfigure(nameArray: [String], section: Int) {
+        headerLabel.text = nameArray[section]
     }
     
 }
 
 // MARK: - Set Constraints
-extension HeaderOptionsScheduleTableViewCell {
+extension HeaderOptionsTableViewCell {
     
     private func addSubview() {
         contentView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)

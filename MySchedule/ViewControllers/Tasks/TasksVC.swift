@@ -46,6 +46,7 @@ class TasksViewController: UIViewController {
         setDelegate()
         
         tableView.register(TasksTableViewCell.self, forCellReuseIdentifier: identifierCell)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
     }
     
     private func setDelegate() {
@@ -84,6 +85,11 @@ class TasksViewController: UIViewController {
             calendar.setScope(.week, animated: true)
             showHideButton.setTitle("Open calendar", for: .normal)
         }
+    }
+    
+    @objc private func addButtonTapped() {
+        let taskOption = TaskOptionalTableViewController()
+        navigationController?.pushViewController(taskOption, animated: true)
     }
 
 }
