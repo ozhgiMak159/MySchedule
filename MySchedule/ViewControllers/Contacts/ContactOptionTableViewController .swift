@@ -1,5 +1,5 @@
 //
-//  ContactOptionTableViewController .swift
+//  OptionContactTableViewController .swift
 //  MySchedule
 //
 //  Created by Maksim  on 11.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactOptionTableViewController: UITableViewController {
+class OptionContactTableViewController: UITableViewController {
     
     private let idOptionsContactCell = "idOptionsContactCell"
     private let idOptionsContactCellHeader = "idOptionsContactCellHeader"
@@ -98,7 +98,7 @@ class ContactOptionTableViewController: UITableViewController {
     
 }
 
-extension ContactOptionTableViewController:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension OptionContactTableViewController:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {

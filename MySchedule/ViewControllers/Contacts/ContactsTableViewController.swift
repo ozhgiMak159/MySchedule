@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.swift
+//  ContactsTableViewController.swift
 //  MySchedule
 //
 //  Created by Maksim  on 06.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactsViewController: UITableViewController {
+class ContactsTableViewController: UITableViewController {
     
     private let idContactsCell = "idContactsCell"
     
@@ -58,7 +58,7 @@ class ContactsViewController: UITableViewController {
     }
     
     @objc private func addButtonTapped() {
-        let contactOptionTVC = ContactOptionTableViewController()
+        let contactOptionTVC = OptionContactTableViewController()
         navigationController?.pushViewController(contactOptionTVC, animated: true)
     }
     

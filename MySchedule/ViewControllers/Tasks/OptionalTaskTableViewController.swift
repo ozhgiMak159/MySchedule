@@ -1,5 +1,5 @@
 //
-//  TaskOptionalTableViewController.swift
+//  OptionalTaskTableViewController.swift
 //  MySchedule
 //
 //  Created by Maksim  on 10.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaskOptionalTableViewController: UITableViewController {
+class OptionalTaskTableViewController: UITableViewController {
     
     private let idOptionsTaskCell = "idOptionsTaskCell"
     private let idOptionsTaskHeader = "idOptionsTaskHeader"
@@ -78,7 +78,7 @@ class TaskOptionalTableViewController: UITableViewController {
         }
         case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson")
         case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Name Task", placeholder: "Enter name task")
-        case 3: pushControllers(vc: ColorTaskTableVC(), title: "Optional Task")
+        case 3: pushControllers(vc: TaskColorTableVC(), title: "Optional Task")
         default:
             break
         }

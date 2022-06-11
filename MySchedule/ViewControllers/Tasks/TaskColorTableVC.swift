@@ -1,5 +1,5 @@
 //
-//  ColorTaskTableVC.swift
+//  TaskColorTableVC.swift
 //  MySchedule
 //
 //  Created by Maksim  on 10.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ColorTaskTableVC: UITableViewController {
+class TaskColorTableVC: UITableViewController {
     
     private let idTaskColorCell = "idTaskColorCell"
     private let idTaskOptionsHeader = "idTaskOptionsHeader"

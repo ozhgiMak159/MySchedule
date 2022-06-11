@@ -1,5 +1,5 @@
 //
-//  OptionsScheduleTableViewController.swift
+//  ScheduleOptionsTableViewController.swift
 //  MySchedule
 //
 //  Created by Maksim  on 09.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OptionsScheduleTableViewController: UITableViewController {
+class ScheduleOptionsTableViewController: UITableViewController {
     
     private let idOptionsScheduleCell = "idOptionsScheduleCell"
     private let idOptionsScheduleCellHeader = "idOptionsScheduleCellHeader"
@@ -32,6 +32,8 @@ class OptionsScheduleTableViewController: UITableViewController {
         
         tableView.separatorStyle = .none
         tableView.bounces = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +112,8 @@ class OptionsScheduleTableViewController: UITableViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    
+    @objc private func saveButtonTapped() {
+       // Закончил на 10 мин 12 урок
+    }
     
 }

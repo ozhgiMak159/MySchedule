@@ -88,7 +88,7 @@ class TasksViewController: UIViewController {
     }
     
     @objc private func addButtonTapped() {
-        let taskOption = TaskOptionalTableViewController()
+        let taskOption = OptionalTaskTableViewController()
         navigationController?.pushViewController(taskOption, animated: true)
     }
 

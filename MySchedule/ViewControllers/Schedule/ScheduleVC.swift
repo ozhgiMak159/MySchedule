@@ -88,10 +88,9 @@ class ScheduleViewController: UIViewController {
     }
   
     @objc private func addButtonTapped() {
-        let scheduleOption = OptionsScheduleTableViewController()
+        let scheduleOption = ScheduleOptionsTableViewController()
         navigationController?.pushViewController(scheduleOption, animated: true)
     }
-
 }
 
 // MARK: - FSCalendarDelegate
