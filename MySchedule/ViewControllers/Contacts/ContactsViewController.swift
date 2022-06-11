@@ -13,7 +13,6 @@ class ContactsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setDelegate()
         
         title = "Contacts"
@@ -21,15 +20,12 @@ class ContactsViewController: UITableViewController {
         
         tableView.separatorStyle = .singleLine
         tableView.bounces = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
-    
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        13
     }
     
     private func setDelegate() {
@@ -37,20 +33,24 @@ class ContactsViewController: UITableViewController {
         tableView.dataSource = self
         tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: idContactsCell)
     }
-    // 3.2 Отображаем наши данные в ячейки
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idContactsCell, for: indexPath) as! ContactsTableViewCell
-        cell.textLabel?.text = "Ghbdf"
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        80
+        85
     }
     
-    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("123")
+    }
+    
+    @objc private func addButtonTapped() {
+        let contactOptionTVC = ContactOptionTableViewController()
+        navigationController?.pushViewController(contactOptionTVC, animated: true)
     }
     
 }

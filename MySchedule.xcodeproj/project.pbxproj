@@ -18,6 +18,7 @@
 		B5B776F02850735B00B2C137 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B776EF2850735B00B2C137 /* UILabel + Extension.swift */; };
 		B5B776F2285077D200B2C137 /* UIFont + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B776F1285077D200B2C137 /* UIFont + Extension .swift */; };
 		B5B776F42850814500B2C137 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B776F32850814500B2C137 /* TasksTableViewCell.swift */; };
+		B5CE20A128545D07005B263D /* ContactOptionTableViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */; };
 		B5DCAD2B2851B14D00A49B29 /* Protocol .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD2A2851B14D00A49B29 /* Protocol .swift */; };
 		B5DCAD2E2851B51200A49B29 /* OptionsScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD2D2851B51200A49B29 /* OptionsScheduleVC.swift */; };
 		B5DCAD322851B93300A49B29 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD312851B93300A49B29 /* OptionsTableViewCell.swift */; };
@@ -53,6 +54,7 @@
 		B5B776EF2850735B00B2C137 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		B5B776F1285077D200B2C137 /* UIFont + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension .swift"; sourceTree = "<group>"; };
 		B5B776F32850814500B2C137 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactOptionTableViewController .swift"; sourceTree = "<group>"; };
 		B5DCAD2A2851B14D00A49B29 /* Protocol .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol .swift"; sourceTree = "<group>"; };
 		B5DCAD2D2851B51200A49B29 /* OptionsScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScheduleVC.swift; sourceTree = "<group>"; };
 		B5DCAD312851B93300A49B29 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 				B5F4FAF6284F4DDD000E4355 /* Schedule */,
 				B5F4FAFB284F726A000E4355 /* Tasks */,
 				B5F4FAFC284F727C000E4355 /* Contacts */,
-				B5DCAD2F2851B51800A49B29 /* OptionsScheduleVC */,
 				B5E8457128534BBF001F1900 /* ScheduleColor */,
 			);
 			path = ViewControllers;
@@ -184,6 +185,7 @@
 				B5DCAD302851B90400A49B29 /* OptionsScheduleCell */,
 			);
 			name = OptionsScheduleVC;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B5DCAD302851B90400A49B29 /* OptionsScheduleCell */ = {
@@ -251,6 +253,7 @@
 		B5F4FAF6284F4DDD000E4355 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				B5DCAD2F2851B51800A49B29 /* OptionsScheduleVC */,
 				B579A6F6284E0A940047923D /* ScheduleVC.swift */,
 				B5F4FAF7284F4E0C000E4355 /* ScheduleCell */,
 			);
@@ -290,6 +293,7 @@
 			children = (
 				B579A6FA284E0ABE0047923D /* ContactsViewController.swift */,
 				B5E8457B28536A96001F1900 /* ContactsCell */,
+				B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -433,6 +437,7 @@
 				B579A6F7284E0A940047923D /* ScheduleVC.swift in Sources */,
 				B5DCAD3C2851DAE000A49B29 /* AlertForCellName.swift in Sources */,
 				B579A6F9284E0AAA0047923D /* TasksVC.swift in Sources */,
+				B5CE20A128545D07005B263D /* ContactOptionTableViewController .swift in Sources */,
 				B5E8457D28536ABA001F1900 /* ContactsTableViewCell.swift in Sources */,
 				B579A6E0284E04B10047923D /* AppDelegate.swift in Sources */,
 				B5E8457428534C0D001F1900 /* ColorTableViewCell.swift in Sources */,

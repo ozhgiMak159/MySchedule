@@ -9,12 +9,13 @@ import UIKit
 
 class OptionsTableViewCell: UITableViewCell {
     
-    let backgroundViewCell: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let backgroundViewCell: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .white
+        imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     let nameCellLabel: UILabel = {
@@ -34,8 +35,16 @@ class OptionsTableViewCell: UITableViewCell {
         return repeatSwitch
     }()
     
-    //3 Определяем названия ячеек по номерам секции и ячеек
-  
+//    private let addImageContact: UIImageView = {
+//       let imageView = UIImageView()
+//        imageView.layer.cornerRadius = 10
+//        imageView.image = UIImage(systemName: "person.fill.badge.plus")
+//        imageView.isHidden = true
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
@@ -59,12 +68,12 @@ class OptionsTableViewCell: UITableViewCell {
         }
     }
     
-    func cellTaskConfigure(nameArray: [String], index: IndexPath) {
+    func cellContactConfigure(nameArray: [String], index: IndexPath) {
         nameCellLabel.text = nameArray[index.section]
         
-        if index == [3,0] {
-            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        }
+        index.section == 4
+        ? backgroundViewCell.image = UIImage(systemName: "person.fill.badge.plus")
+        : nil
     }
     
     @objc func switchChange(paramTarget: UISwitch) {
@@ -83,6 +92,7 @@ extension OptionsTableViewCell {
         addSubview(backgroundViewCell)
         addSubview(nameCellLabel)
         contentView.addSubview(repeatSwitch)
+       // contentView.addSubview(addImageContact)
     }
     
     private func setConstraints() {
@@ -103,6 +113,13 @@ extension OptionsTableViewCell {
             repeatSwitch.centerYAnchor.constraint(equalTo: centerYAnchor),
             repeatSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
         ])
+        
+//        NSLayoutConstraint.activate([
+//            addImageContact.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+//            addImageContact.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+//            addImageContact.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+//            addImageContact.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+//        ])
   
     }
 }
