@@ -19,6 +19,8 @@
 		B5B776F2285077D200B2C137 /* UIFont + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B776F1285077D200B2C137 /* UIFont + Extension .swift */; };
 		B5B776F42850814500B2C137 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B776F32850814500B2C137 /* TasksTableViewCell.swift */; };
 		B5CE20A128545D07005B263D /* ContactOptionTableViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */; };
+		B5CE20A3285468FD005B263D /* AlertFriendOrTeacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20A2285468FD005B263D /* AlertFriendOrTeacher.swift */; };
+		B5CE20A528547229005B263D /* PhotoCameraAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20A428547229005B263D /* PhotoCameraAlert.swift */; };
 		B5DCAD2B2851B14D00A49B29 /* Protocol .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD2A2851B14D00A49B29 /* Protocol .swift */; };
 		B5DCAD2E2851B51200A49B29 /* OptionsScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD2D2851B51200A49B29 /* OptionsScheduleVC.swift */; };
 		B5DCAD322851B93300A49B29 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD312851B93300A49B29 /* OptionsTableViewCell.swift */; };
@@ -55,6 +57,8 @@
 		B5B776F1285077D200B2C137 /* UIFont + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension .swift"; sourceTree = "<group>"; };
 		B5B776F32850814500B2C137 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactOptionTableViewController .swift"; sourceTree = "<group>"; };
+		B5CE20A2285468FD005B263D /* AlertFriendOrTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFriendOrTeacher.swift; sourceTree = "<group>"; };
+		B5CE20A428547229005B263D /* PhotoCameraAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCameraAlert.swift; sourceTree = "<group>"; };
 		B5DCAD2A2851B14D00A49B29 /* Protocol .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol .swift"; sourceTree = "<group>"; };
 		B5DCAD2D2851B51200A49B29 /* OptionsScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScheduleVC.swift; sourceTree = "<group>"; };
 		B5DCAD312851B93300A49B29 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 				B5DCAD352851D0F000A49B29 /* AlertDate.swift */,
 				B5DCAD372851D85E00A49B29 /* AlertTime.swift */,
 				B5DCAD3B2851DAE000A49B29 /* AlertForCellName.swift */,
+				B5CE20A2285468FD005B263D /* AlertFriendOrTeacher.swift */,
+				B5CE20A428547229005B263D /* PhotoCameraAlert.swift */,
 			);
 			path = AlertController;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				B5DCAD2B2851B14D00A49B29 /* Protocol .swift in Sources */,
 				B579A6E4284E04B10047923D /* MainTabBarController.swift in Sources */,
 				B5E8456E285343A4001F1900 /* ScheduleColorVC.swift in Sources */,
+				B5CE20A3285468FD005B263D /* AlertFriendOrTeacher.swift in Sources */,
 				B5F4FAF5284F4DD1000E4355 /* ScheduleTableViewCell.swift in Sources */,
 				B579A6F7284E0A940047923D /* ScheduleVC.swift in Sources */,
 				B5DCAD3C2851DAE000A49B29 /* AlertForCellName.swift in Sources */,
@@ -450,6 +457,7 @@
 				B5B776F02850735B00B2C137 /* UILabel + Extension.swift in Sources */,
 				B579A6FB284E0ABE0047923D /* ContactsViewController.swift in Sources */,
 				B5F4FAFA284F69B8000E4355 /* UIStackView + Extension.swift in Sources */,
+				B5CE20A528547229005B263D /* PhotoCameraAlert.swift in Sources */,
 				B5DCAD2E2851B51200A49B29 /* OptionsScheduleVC.swift in Sources */,
 				B5B776F42850814500B2C137 /* TasksTableViewCell.swift in Sources */,
 				B5E8457628535223001F1900 /* TaskOptionalTableViewController.swift in Sources */,

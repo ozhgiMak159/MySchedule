@@ -11,17 +11,26 @@ class ContactsViewController: UITableViewController {
     
     private let idContactsCell = "idContactsCell"
     
+    private let searchController = UISearchController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
+        setupSearch()
         
         title = "Contacts"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
         
+        
         tableView.separatorStyle = .singleLine
-        tableView.bounces = false
+     //   tableView.bounces = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+    }
+    
+    private func setupSearch() {
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,3 +63,4 @@ class ContactsViewController: UITableViewController {
     }
     
 }
+

@@ -72,9 +72,21 @@ class ContactOptionTableViewController: UITableViewController {
     
     // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
-       
+        switch indexPath.section {
+        case 0: alertForCellInformation(label: cell.nameCellLabel, name: "Name Contact", placeholder: "Enter name lesson")
+        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Phone Contact", placeholder: "Enter name lesson")
+        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Mail Contact", placeholder: "Enter name lesson")
+        case 3: AlertFriendOrTeacher(label: cell.nameCellLabel) { type in
+            print(type)
+        }
+        case 4: alertPhotoOrCamera { source in
+            self.chooseImagePicker(source: source)
+        }
+        default:
+            print("12345")
+        }
     }
     
    private func pushControllers(vc: UIViewController, title: String) {
@@ -84,7 +96,27 @@ class ContactOptionTableViewController: UITableViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+}
+
+extension ContactOptionTableViewController:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let cell = tableView.cellForRow(at: [4,0]) as! OptionsTableViewCell
+        cell.backgroundViewCell.image = info[.editedImage] as? UIImage
+        cell.backgroundViewCell.contentMode = .scaleAspectFill
+        cell.backgroundViewCell.clipsToBounds = true
+        dismiss(animated: true)
+    }
     
 }
 
