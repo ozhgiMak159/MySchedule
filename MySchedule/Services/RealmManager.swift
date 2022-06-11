@@ -19,6 +19,5 @@ class RealmManager {
         }
     }
     
-
     private init() {}
 }

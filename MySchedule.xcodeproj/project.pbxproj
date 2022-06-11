@@ -149,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				B5F4FAFD284F728A000E4355 /* MainTabBar */,
-				B5E8456C28534340001F1900 /* Teachers */,
 				B5F4FAF6284F4DDD000E4355 /* Schedule */,
 				B5F4FAFB284F726A000E4355 /* Tasks */,
 				B5F4FAFC284F727C000E4355 /* Contacts */,
@@ -203,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				B5DCAD2D2851B51200A49B29 /* OptionsScheduleVC.swift */,
+				B5E8456C28534340001F1900 /* Teachers */,
+				B5E8457128534BBF001F1900 /* ScheduleColor */,
 				B5DCAD302851B90400A49B29 /* OptionsScheduleCell */,
 			);
 			name = OptionsScheduleVC;
@@ -277,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				B579A6F6284E0A940047923D /* ScheduleVC.swift */,
-				B5E8457128534BBF001F1900 /* ScheduleColor */,
 				B5DCAD2F2851B51800A49B29 /* OptionsScheduleVC */,
 				B5F4FAF7284F4E0C000E4355 /* ScheduleCell */,
 			);
