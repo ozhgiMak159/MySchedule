@@ -30,19 +30,23 @@ class ScheduleOptionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setDelegate()
-        
         title = "Optional Schedule"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+      //  tabBarController?.tabBar.isHidden = false
+        
+        setDelegate()
         
         tableView.separatorStyle = .none
         tableView.bounces = false
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
+      //  tabBarController?.tabBar.isHidden = false
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

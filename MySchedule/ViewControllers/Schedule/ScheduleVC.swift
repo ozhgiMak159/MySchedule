@@ -39,6 +39,10 @@ class ScheduleViewController: UIViewController {
     
     private let identifierCell = "Cell"
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
@@ -90,6 +94,7 @@ class ScheduleViewController: UIViewController {
     @objc private func addButtonTapped() {
         let scheduleOption = ScheduleOptionsTableViewController()
         navigationController?.pushViewController(scheduleOption, animated: true)
+        tabBarController?.tabBar.isHidden = true
     }
 }
 
@@ -117,7 +122,6 @@ extension ScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -141,7 +145,10 @@ extension ScheduleViewController {
         view.backgroundColor = .white
         title = "Schedule"
     
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped))
         
         view.addSubview(calendar)
         view.addSubview(showHideButton)
@@ -174,7 +181,5 @@ extension ScheduleViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-    
     }
-
 }
