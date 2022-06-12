@@ -13,6 +13,10 @@ class ContactsTableViewController: UITableViewController {
     
     private let searchController = UISearchController()
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -60,6 +64,7 @@ class ContactsTableViewController: UITableViewController {
     @objc private func addButtonTapped() {
         let contactOptionTVC = OptionContactTableViewController()
         navigationController?.pushViewController(contactOptionTVC, animated: true)
+        tabBarController?.tabBar.isHidden = true
     }
     
 }

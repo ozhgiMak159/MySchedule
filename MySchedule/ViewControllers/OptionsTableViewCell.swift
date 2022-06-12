@@ -33,16 +33,7 @@ class OptionsTableViewCell: UITableViewCell {
         repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
         return repeatSwitch
     }()
-    
-//    private let addImageContact: UIImageView = {
-//       let imageView = UIImageView()
-//        imageView.layer.cornerRadius = 10
-//        imageView.image = UIImage(systemName: "person.fill.badge.plus")
-//        imageView.isHidden = true
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-    
+        
     weak var switchRepeatDelegate: SwitchRepeatProtocol?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -74,7 +65,6 @@ class OptionsTableViewCell: UITableViewCell {
         : nil
     }
     
-    
     // cellTaskConfigure!!!!
     
     @objc func switchChange(paramTarget: UISwitch) {
@@ -93,7 +83,6 @@ extension OptionsTableViewCell {
         addSubview(backgroundViewCell)
         addSubview(nameCellLabel)
         contentView.addSubview(repeatSwitch)
-       // contentView.addSubview(addImageContact)
     }
     
     private func setConstraints() {
@@ -114,14 +103,6 @@ extension OptionsTableViewCell {
             repeatSwitch.centerYAnchor.constraint(equalTo: centerYAnchor),
             repeatSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
         ])
-        
-//        NSLayoutConstraint.activate([
-//            addImageContact.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-//            addImageContact.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-//            addImageContact.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-//            addImageContact.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-//        ])
-  
     }
 }
 

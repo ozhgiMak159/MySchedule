@@ -12,7 +12,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
     private let idOptionsScheduleCell = "idOptionsScheduleCell"
     private let idOptionsScheduleCellHeader = "idOptionsScheduleCellHeader"
     
-    private  let headerNameArray = ["DATE AND TIME","LESSON","TEACHER","COLOR","PERIOD"]
+    private let headerNameArray = ["DATE AND TIME","LESSON","TEACHER","COLOR","PERIOD"]
     
     private let cellNameArray = [
          ["Date","Time"],
@@ -32,8 +32,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
         
         title = "Optional Schedule"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
-      //  tabBarController?.tabBar.isHidden = false
-        
+     
         setDelegate()
         
         tableView.separatorStyle = .none
@@ -43,10 +42,9 @@ class ScheduleOptionsTableViewController: UITableViewController {
             barButtonSystemItem: .save,
             target: self,
             action: #selector(saveButtonTapped))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-      //  tabBarController?.tabBar.isHidden = false
+        
+        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
+        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleCellHeader)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,8 +66,6 @@ class ScheduleOptionsTableViewController: UITableViewController {
     private func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleCellHeader)
     }
     // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,7 +140,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
         RealmManager.shared.saveScheduleModel(model: scheduleModel)
         // Если приложения крашится при повторном изменении
         scheduleModel = Schedule()
-        alertOK(titel: "Успешно")
+        alertOK(titel: "Данные успешно сохранены")
         // Обновления ячееек после сохранения
        // tableView.reloadRows(at: [[0,0], [0,1], [1,0], [1,1], [1,2], [1,3], [2,0]], with: .none)
         hexColorCell = "3DACF7"
@@ -157,8 +153,6 @@ extension ScheduleOptionsTableViewController: SwitchRepeatProtocol {
     func switchRepeat(value: Bool) {
         scheduleModel.scheduleRepeat = value
     }
-    
-    
 }
 
 

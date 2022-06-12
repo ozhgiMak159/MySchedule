@@ -29,11 +29,7 @@ class OptionContactTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.bounces = false
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
-    
+        
     override func numberOfSections(in tableView: UITableView) -> Int {
         5
     }

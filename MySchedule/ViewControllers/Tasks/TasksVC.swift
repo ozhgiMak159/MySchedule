@@ -38,6 +38,10 @@ class TasksViewController: UIViewController {
     
     private var calendarHeightConstraint: NSLayoutConstraint!
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +94,7 @@ class TasksViewController: UIViewController {
     @objc private func addButtonTapped() {
         let taskOption = OptionalTaskTableViewController()
         navigationController?.pushViewController(taskOption, animated: true)
+        tabBarController?.tabBar.isHidden = true
     }
 
 }
