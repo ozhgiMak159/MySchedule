@@ -29,7 +29,6 @@ class OptionsTableViewCell: UITableViewCell {
        let repeatSwitch = UISwitch()
         repeatSwitch.isOn = true
         repeatSwitch.isHidden = true
-        repeatSwitch.onTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         repeatSwitch.addTarget(self, action: #selector(switchChange), for: .valueChanged)
         repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
         return repeatSwitch
@@ -44,6 +43,7 @@ class OptionsTableViewCell: UITableViewCell {
 //        return imageView
 //    }()
     
+    weak var switchRepeatDelegate: SwitchRepeatProtocol?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -56,16 +56,14 @@ class OptionsTableViewCell: UITableViewCell {
     }
     
     // 3.1 Используем массив с данными для ячеек и иницилизируем свойства внутри ячейки
-    func cellScheduleConfigure(nameArray: [[String]], index: IndexPath) {
+    func cellScheduleConfigure(nameArray: [[String]], index: IndexPath, hexColor: String ) {
         nameCellLabel.text = nameArray[index.section][index.row]
+        repeatSwitch.isHidden = (index.section == 4 ? false : true)
+           
+        let color = UIColor().colorFromHex(hexColor)
+        backgroundViewCell.backgroundColor = (index.section == 3 ? color : .white)
         
-        if index == [3,0] {
-            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        }
-        // ?
-        if index == [4,0] {
-            repeatSwitch.isHidden = false
-        }
+        repeatSwitch.onTintColor = color
     }
     
     func cellContactConfigure(nameArray: [String], index: IndexPath) {
@@ -76,8 +74,11 @@ class OptionsTableViewCell: UITableViewCell {
         : nil
     }
     
+    
+    // cellTaskConfigure!!!!
+    
     @objc func switchChange(paramTarget: UISwitch) {
-        
+        switchRepeatDelegate?.switchRepeat(value: paramTarget.isOn)
     }
     
 }

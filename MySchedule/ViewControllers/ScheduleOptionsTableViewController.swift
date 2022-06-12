@@ -22,6 +22,11 @@ class ScheduleOptionsTableViewController: UITableViewController {
          ["Repeat every 7 days"]
      ]
     
+    // Если приложения крашится при повторном изменении
+    private var scheduleModel = Schedule()
+    
+    var hexColorCell = "3DACF7"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,7 +70,8 @@ class ScheduleOptionsTableViewController: UITableViewController {
     // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsTableViewCell
-        cell.cellScheduleConfigure(nameArray: cellNameArray, index: indexPath)
+        cell.cellScheduleConfigure(nameArray: cellNameArray, index: indexPath, hexColor: hexColorCell)
+        cell.switchRepeatDelegate = self
         return cell
     }
     
@@ -88,18 +94,35 @@ class ScheduleOptionsTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
         switch indexPath {
-        case [0,0]: alertDate(label: cell.nameCellLabel) { numberWeekday, date in
-            print(numberWeekday, date)
+        case [0,0]:
+            alertDate(label: cell.nameCellLabel) { numberWeekday, date in
+                self.scheduleModel.scheduleDate = date
+                self.scheduleModel.scheduleWeekday = numberWeekday
         }
-        case [0,1]: alertTime(label: cell.nameCellLabel) { date in
-            print(date)
+        case [0,1]:
+            alertTime(label: cell.nameCellLabel) { time in
+                self.scheduleModel.scheduleTime = time
         }
-        case [1,0]: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson")
-        case [1,1]: alertForCellInformation(label: cell.nameCellLabel, name: "Type lesson", placeholder: "Enter type lesson")
-        case [1,2]: alertForCellInformation(label: cell.nameCellLabel, name: "Building number", placeholder: "Enter number of building")
-        case [1,3]: alertForCellInformation(label: cell.nameCellLabel, name: "Audience number", placeholder: "Enter number of audience")
-        case [2,0]: pushControllers(vc: TeachersVC(), title: "Options")
-        case [3,0]: pushControllers(vc: ScheduleColorVC(), title: "Options")
+        case [1,0]:
+            alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { name in
+                self.scheduleModel.scheduleName = name
+        }
+        case [1,1]:
+            alertForCellInformation(label: cell.nameCellLabel, name: "Type lesson", placeholder: "Enter type lesson") { type in
+                self.scheduleModel.scheduleType = type
+        }
+        case [1,2]:
+            alertForCellInformation(label: cell.nameCellLabel, name: "Building number", placeholder: "Enter number of building") { building in
+                self.scheduleModel.scheduleBuilding = building
+        }
+        case [1,3]:
+            alertForCellInformation(label: cell.nameCellLabel, name: "Audience number", placeholder: "Enter number of audience") { audience in
+                self.scheduleModel.scheduleAudience = audience
+        }
+        case [2,0]:
+            pushControllers(vc: TeachersVC(), title: "Options")
+        case [3,0]:
+            pushControllers(vc: ScheduleColorVC(), title: "Options")
         default:
             break
         }
@@ -113,7 +136,33 @@ class ScheduleOptionsTableViewController: UITableViewController {
     }
     
     @objc private func saveButtonTapped() {
-       // Закончил на 10 мин 12 урок
+        scheduleModel.scheduleColor = hexColorCell
+        RealmManager.shared.saveScheduleModel(model: scheduleModel)
+        // Если приложения крашится при повторном изменении
+        scheduleModel = Schedule()
+        alertOK(titel: "Успешно")
+        // Обновления ячееек после сохранения
+       // tableView.reloadRows(at: [[0,0], [0,1], [1,0], [1,1], [1,2], [1,3], [2,0]], with: .none)
+        hexColorCell = "3DACF7"
+        tableView.reloadData()
     }
     
 }
+
+extension ScheduleOptionsTableViewController: SwitchRepeatProtocol {
+    func switchRepeat(value: Bool) {
+        scheduleModel.scheduleRepeat = value
+    }
+    
+    
+}
+
+
+
+// Изучить
+/*
+ case [1,0]:
+     alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { [weak self] name in
+         self?.scheduleModel.scheduleName = name
+ }
+ */

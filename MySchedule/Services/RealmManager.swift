@@ -11,7 +11,7 @@ import RealmSwift
 class RealmManager {
     
     static let shared = RealmManager()
-    let realm = try! Realm()
+    private let realm = try! Realm()
     
     func saveScheduleModel(model: Schedule) {
         try! realm.write {

@@ -76,8 +76,12 @@ class OptionalTaskTableViewController: UITableViewController {
         case 0: alertDate(label: cell.nameCellLabel) { numberWeekday, date in
             print(numberWeekday, date)
         }
-        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson")
-        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Name Task", placeholder: "Enter name task")
+        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { text in
+            print(text)
+        }
+        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Name Task", placeholder: "Enter name task") { text in
+            print(text)
+        }
         case 3: pushControllers(vc: TaskColorTableVC(), title: "Optional Task")
         default:
             break
