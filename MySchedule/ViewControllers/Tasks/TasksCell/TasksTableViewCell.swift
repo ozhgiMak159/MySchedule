@@ -9,8 +9,8 @@ import UIKit
 
 class TasksTableViewCell: UITableViewCell {
     
-    private let taskName = UILabel(text: "SwiftUI", font: .avenirNextDemiBold16())
-    private let taskDescription = UILabel(text: "Основы языка SwiftUI", font: .avenirNext14())
+    private let taskName = UILabel(text: "", font: .avenirNextDemiBold16())
+    private let taskDescription = UILabel(text: "", font: .avenirNext14())
     
     private let readyButton: UIButton = {
         let button = UIButton()
@@ -35,6 +35,18 @@ class TasksTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: TaskModel) {
+        taskName.text = model.taskName
+        taskDescription.text = model.taskDescription
+        backgroundColor = UIColor().colorFromHex("\(model.taskColor)")
+        
+        if model.taskReady {
+            readyButton.setBackgroundImage(UIImage(systemName: "chevron.down.circle.fill"), for: .normal)
+        } else {
+            readyButton.setBackgroundImage(UIImage(systemName: "chevron.down.circle"), for: .normal)
+        }
     }
     
     // 2 Говорим что наша кнопка выполняет действия

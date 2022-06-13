@@ -8,6 +8,7 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class ScheduleViewController: UIViewController {
     
@@ -39,8 +40,13 @@ class ScheduleViewController: UIViewController {
     
     private let identifierCell = "Cell"
     
+     let localRealm = try! Realm()
+     var scheduleArray: Results<ScheduleModel>!
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -49,6 +55,7 @@ class ScheduleViewController: UIViewController {
         setConstrains()
         setDelegate()
         swipeAction()
+        scheduleOnDay(date: Date())
         
         tableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: identifierCell)
     }
@@ -69,6 +76,31 @@ class ScheduleViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeDown.direction = .down
         calendar.addGestureRecognizer(swipeDown)
+        
+    }
+    
+    private func scheduleOnDay(date: Date) {
+        // Полученя номера дня недели!
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.weekday], from: date)
+        guard let weekday = components.weekday else { return }
+        print(weekday)
+        
+        let dateStart = date // Сегоднешнее число - дата - 13.06.22 - 00.00
+        let dateEnd: Date = { // Дата окончания 13.06.22 - 23:59:59
+            let components = DateComponents(day: 1, second: -1)
+            return Calendar.current.date(byAdding: components, to: dateStart)!
+        }()
+//        print("Начало дня - \(dateStart)")
+//        print("Конец дня - \(dateEnd)")
+        
+        // Повторы задач каждую неделю
+        let predicateRepeat = NSPredicate(format: "scheduleWeekday = \(weekday) AND scheduleRepeat = true")
+        let predicateUnrepeat = NSPredicate(format: "scheduleRepeat = false AND scheduleDate BETWEEN %@",[dateStart, dateEnd])
+        let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
+        
+        scheduleArray = localRealm.objects(ScheduleModel.self).filter(compound).sorted(byKeyPath: "scheduleTime")
+        tableView.reloadData()
         
     }
     
@@ -105,14 +137,13 @@ extension ScheduleViewController: FSCalendarDelegate {
         calendarHeightConstraint.constant = bounds.height
         view.layoutIfNeeded()
     }
-
 }
 
 // MARK: - FSCalendarDataSource
 extension ScheduleViewController: FSCalendarDataSource {
  
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(date)
+     scheduleOnDay(date: date)
     }
 }
 
@@ -122,17 +153,30 @@ extension ScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editingRow = scheduleArray[indexPath.row]
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completionHandler in
+            RealmManager.shared.delete(model: editingRow)
+            tableView.reloadData()
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension ScheduleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        scheduleArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath) as! ScheduleTableViewCell
+        let content = scheduleArray[indexPath.row]
+        cell.configure(model: content)
         return cell
     }
     

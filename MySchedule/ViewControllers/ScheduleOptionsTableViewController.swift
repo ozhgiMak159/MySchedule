@@ -23,7 +23,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
      ]
     
     // Если приложения крашится при повторном изменении
-    private var scheduleModel = Schedule()
+    private var scheduleModel = ScheduleModel()
     
     var hexColorCell = "3DACF7"
     
@@ -136,15 +136,19 @@ class ScheduleOptionsTableViewController: UITableViewController {
     }
     
     @objc private func saveButtonTapped() {
-        scheduleModel.scheduleColor = hexColorCell
-        RealmManager.shared.saveScheduleModel(model: scheduleModel)
-        // Если приложения крашится при повторном изменении
-        scheduleModel = Schedule()
-        alertOK(titel: "Данные успешно сохранены")
-        // Обновления ячееек после сохранения
-       // tableView.reloadRows(at: [[0,0], [0,1], [1,0], [1,1], [1,2], [1,3], [2,0]], with: .none)
-        hexColorCell = "3DACF7"
-        tableView.reloadData()
+        
+        if scheduleModel.scheduleDate == nil || scheduleModel.scheduleTime == nil || scheduleModel.scheduleName == "Unknown" {
+            alertOK(titel: "Error", message: "Required fields: DATE, TIME, NAME")
+        } else {
+            scheduleModel.scheduleColor = hexColorCell
+            RealmManager.shared.saveScheduleModel(model: scheduleModel)
+            // Если приложения крашится при повторном изменении
+            scheduleModel = ScheduleModel()
+            alertOK(titel: "Данные успешно сохранены", message: nil)
+            // Обновления ячееек после сохранения
+            hexColorCell = "3DACF7"
+            tableView.reloadData()
+        }
     }
     
 }

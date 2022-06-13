@@ -13,11 +13,24 @@ class RealmManager {
     static let shared = RealmManager()
     private let realm = try! Realm()
     
-    func saveScheduleModel(model: Schedule) {
+    func saveScheduleModel(model: ScheduleModel) {
         try! realm.write {
             realm.add(model)
         }
     }
+    
+    func delete(model: ScheduleModel) {
+        try! realm.write {
+            realm.delete(model)
+        }
+    }
+    // Дженерик????
+    func deleteTask(model: TaskModel) {
+        try! realm.write {
+            realm.delete(model)
+        }
+    }
+    
     
     private init() {}
 }

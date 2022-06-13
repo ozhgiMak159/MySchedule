@@ -23,7 +23,7 @@
 		B5CE20A528547229005B263D /* PhotoCameraAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20A428547229005B263D /* PhotoCameraAlert.swift */; };
 		B5CE20A8285478BF005B263D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5CE20A7285478BF005B263D /* Realm */; };
 		B5CE20AA285478BF005B263D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B5CE20A9285478BF005B263D /* RealmSwift */; };
-		B5CE20AC285479A3005B263D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AB285479A3005B263D /* Schedule.swift */; };
+		B5CE20AC285479A3005B263D /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AB285479A3005B263D /* ScheduleModel.swift */; };
 		B5CE20AF28547DE9005B263D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AE28547DE9005B263D /* RealmManager.swift */; };
 		B5CE20B42855BBA8005B263D /* UIColor + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20B32855BBA7005B263D /* UIColor + Extension .swift */; };
 		B5CE20B62855C6B9005B263D /* AlertOK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20B52855C6B9005B263D /* AlertOK.swift */; };
@@ -34,6 +34,7 @@
 		B5DCAD362851D0F000A49B29 /* AlertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD352851D0F000A49B29 /* AlertDate.swift */; };
 		B5DCAD382851D85E00A49B29 /* AlertTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD372851D85E00A49B29 /* AlertTime.swift */; };
 		B5DCAD3C2851DAE000A49B29 /* AlertForCellName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCAD3B2851DAE000A49B29 /* AlertForCellName.swift */; };
+		B5E4CDCD28574580004B5E29 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4CDCC28574580004B5E29 /* TaskModel.swift */; };
 		B5E8456E285343A4001F1900 /* ScheduleColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8456D285343A4001F1900 /* ScheduleColorVC.swift */; };
 		B5E84570285343D8001F1900 /* TeachersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8456F285343D8001F1900 /* TeachersVC.swift */; };
 		B5E8457428534C0D001F1900 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8457328534C0D001F1900 /* ColorTableViewCell.swift */; };
@@ -65,7 +66,7 @@
 		B5CE20A028545D07005B263D /* ContactOptionTableViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactOptionTableViewController .swift"; sourceTree = "<group>"; };
 		B5CE20A2285468FD005B263D /* AlertFriendOrTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFriendOrTeacher.swift; sourceTree = "<group>"; };
 		B5CE20A428547229005B263D /* PhotoCameraAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCameraAlert.swift; sourceTree = "<group>"; };
-		B5CE20AB285479A3005B263D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		B5CE20AB285479A3005B263D /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		B5CE20AE28547DE9005B263D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		B5CE20B32855BBA7005B263D /* UIColor + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension .swift"; sourceTree = "<group>"; };
 		B5CE20B52855C6B9005B263D /* AlertOK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOK.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		B5DCAD352851D0F000A49B29 /* AlertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDate.swift; sourceTree = "<group>"; };
 		B5DCAD372851D85E00A49B29 /* AlertTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTime.swift; sourceTree = "<group>"; };
 		B5DCAD3B2851DAE000A49B29 /* AlertForCellName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertForCellName.swift; sourceTree = "<group>"; };
+		B5E4CDCC28574580004B5E29 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		B5E8456D285343A4001F1900 /* ScheduleColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleColorVC.swift; sourceTree = "<group>"; };
 		B5E8456F285343D8001F1900 /* TeachersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersVC.swift; sourceTree = "<group>"; };
 		B5E8457328534C0D001F1900 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,7 +199,8 @@
 		B5DCAD2C2851B1E100A49B29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE20AB285479A3005B263D /* Schedule.swift */,
+				B5CE20AB285479A3005B263D /* ScheduleModel.swift */,
+				B5E4CDCC28574580004B5E29 /* TaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				B579A6E0284E04B10047923D /* AppDelegate.swift in Sources */,
 				B5E8457428534C0D001F1900 /* ColorTableViewCell.swift in Sources */,
 				B5B776F2285077D200B2C137 /* UIFont + Extension .swift in Sources */,
+				B5E4CDCD28574580004B5E29 /* TaskModel.swift in Sources */,
 				B5CE20AF28547DE9005B263D /* RealmManager.swift in Sources */,
 				B5E8457A28535A0E001F1900 /* TaskColorTableVC.swift in Sources */,
 				B5DCAD382851D85E00A49B29 /* AlertTime.swift in Sources */,
@@ -494,7 +498,7 @@
 				B5DCAD2E2851B51200A49B29 /* ScheduleOptionsTableViewController.swift in Sources */,
 				B5B776F42850814500B2C137 /* TasksTableViewCell.swift in Sources */,
 				B5E8457628535223001F1900 /* OptionalTaskTableViewController.swift in Sources */,
-				B5CE20AC285479A3005B263D /* Schedule.swift in Sources */,
+				B5CE20AC285479A3005B263D /* ScheduleModel.swift in Sources */,
 				B5CE20B62855C6B9005B263D /* AlertOK.swift in Sources */,
 				B5E84570285343D8001F1900 /* TeachersVC.swift in Sources */,
 			);
