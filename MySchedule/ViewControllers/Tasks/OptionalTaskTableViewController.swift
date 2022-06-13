@@ -34,6 +34,9 @@ class OptionalTaskTableViewController: UITableViewController {
             barButtonSystemItem: .save,
             target: self,
             action: #selector(saveButtonTapped))
+        
+        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsTaskCell)
+        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsTaskHeader)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,10 +51,8 @@ class OptionalTaskTableViewController: UITableViewController {
     private func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsTaskCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsTaskHeader)
     }
-    // 3.2 Отображаем наши данные в ячейки
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsTaskCell, for: indexPath) as! OptionsTableViewCell
         cell.cellTasksConfigure(nameArray: cellNameArray, index: indexPath, hexColor: hexColorCell)

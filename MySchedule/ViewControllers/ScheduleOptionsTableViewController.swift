@@ -51,7 +51,6 @@ class ScheduleOptionsTableViewController: UITableViewController {
         5
     }
     
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 2
@@ -67,7 +66,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    // 3.2 Отображаем наши данные в ячейки
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsTableViewCell
         cell.cellScheduleConfigure(nameArray: cellNameArray, index: indexPath, hexColor: hexColorCell)

@@ -102,7 +102,6 @@ class ScheduleViewController: UIViewController {
         
         scheduleArray = localRealm.objects(ScheduleModel.self).filter(compound).sorted(byKeyPath: "scheduleTime")
         tableView.reloadData()
-        
     }
     
     @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
@@ -180,10 +179,8 @@ extension ScheduleViewController: UITableViewDataSource {
         cell.configure(model: content)
         return cell
     }
-    
-    
 }
-// MARK: - ScheduleViewController Set Constraints
+// MARK: - ScheduleViewController & Set Constraints
 extension ScheduleViewController {
     
     private func addSubView() {

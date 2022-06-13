@@ -46,7 +46,6 @@ class OptionsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // 3.1 Используем массив с данными для ячеек и иницилизируем свойства внутри ячейки
     func cellScheduleConfigure(nameArray: [[String]], index: IndexPath, hexColor: String ) {
         nameCellLabel.text = nameArray[index.section][index.row]
         repeatSwitch.isHidden = (index.section == 4 ? false : true)
@@ -64,8 +63,6 @@ class OptionsTableViewCell: UITableViewCell {
         ? backgroundViewCell.image = UIImage(systemName: "person.fill.badge.plus")
         : nil
     }
-    
-    // cellTaskConfigure!!!!
     
     func cellTasksConfigure(nameArray: [String], index: IndexPath, hexColor: String ) {
         nameCellLabel.text = nameArray[index.section]
