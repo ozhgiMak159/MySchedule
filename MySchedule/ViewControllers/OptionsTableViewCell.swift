@@ -67,6 +67,13 @@ class OptionsTableViewCell: UITableViewCell {
     
     // cellTaskConfigure!!!!
     
+    func cellTasksConfigure(nameArray: [String], index: IndexPath, hexColor: String ) {
+        nameCellLabel.text = nameArray[index.section]
+       
+        let color = UIColor().colorFromHex(hexColor)
+        backgroundViewCell.backgroundColor = (index.section == 3 ? color : .white)
+    }
+    
     @objc func switchChange(paramTarget: UISwitch) {
         switchRepeatDelegate?.switchRepeat(value: paramTarget.isOn)
     }

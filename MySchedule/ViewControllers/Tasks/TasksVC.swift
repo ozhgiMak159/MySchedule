@@ -127,7 +127,7 @@ extension TasksViewController: FSCalendarDelegate {
 extension TasksViewController: FSCalendarDataSource {
  
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(date)
+        setTaskOnDay(date: date)
     }
 }
 
@@ -171,7 +171,9 @@ extension TasksViewController: UITableViewDataSource {
 // MARK: - PressReadyTaskButtonProtocol
 extension TasksViewController: PressReadyTaskButtonProtocol {
     func readyButtonTapped(indexPath: IndexPath) {
-        print("TAP")
+        let task = tasksArray[indexPath.row]
+        RealmManager.shared.updateReadyButtonTaskModel(task: task, bool: !task.taskReady)
+        tableView.reloadData()
     }
 }
 

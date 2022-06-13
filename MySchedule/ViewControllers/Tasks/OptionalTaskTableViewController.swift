@@ -15,6 +15,10 @@ class OptionalTaskTableViewController: UITableViewController {
     private  let headerNameArray = ["DATE","LESSON","TASK","COLOR"]
     private let cellNameArray = ["Date", "Lesson", "Task", ""]
     
+    var hexColorCell = "1A4766"
+    
+    private var taskModel = TaskModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +29,11 @@ class OptionalTaskTableViewController: UITableViewController {
         
         tableView.separatorStyle = .none
         tableView.bounces = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveButtonTapped))
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,7 +54,7 @@ class OptionalTaskTableViewController: UITableViewController {
     // 3.2 Отображаем наши данные в ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsTaskCell, for: indexPath) as! OptionsTableViewCell
-        cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath)
+        cell.cellTasksConfigure(nameArray: cellNameArray, index: indexPath, hexColor: hexColorCell)
         return cell
     }
     
@@ -68,14 +77,14 @@ class OptionalTaskTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
         switch indexPath.section {
-        case 0: alertDate(label: cell.nameCellLabel) { numberWeekday, date in
-            print(numberWeekday, date)
+        case 0: alertDate(label: cell.nameCellLabel) { _, date in
+            self.taskModel.taskDate = date
         }
-        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { text in
-            print(text)
+        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { name in
+            self.taskModel.taskName = name
         }
-        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Name Task", placeholder: "Enter name task") { text in
-            print(text)
+        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Description Task", placeholder: "Enter Description task") { task in
+            self.taskModel.taskDescription = task
         }
         case 3: pushControllers(vc: TaskColorTableVC(), title: "Optional Task")
         default:
@@ -88,6 +97,22 @@ class OptionalTaskTableViewController: UITableViewController {
         navigationController?.navigationBar.topItem?.title = title
         navigationController?.pushViewController(viewController, animated: true)
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc private func saveButtonTapped() {
+        
+        if taskModel.taskDate == nil || taskModel.taskName == "Unknown" {
+            alertOK(titel: "Error", message: "Required fields: DATE, TIME, NAME")
+        } else {
+            taskModel.taskColor = hexColorCell
+            RealmManager.shared.saveTaskModel(model: taskModel)
+            // Если приложения крашится при повторном изменении
+            taskModel = TaskModel()
+            alertOK(titel: "Данные успешно сохранены", message: nil)
+            // Обновления ячееек после сохранения
+            hexColorCell = "1A4766"
+            tableView.reloadData()
+        }
     }
 
 }

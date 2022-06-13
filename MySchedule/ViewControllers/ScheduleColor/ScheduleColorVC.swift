@@ -64,8 +64,7 @@ class ScheduleColorVC: UITableViewController {
     
     // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TappCell")
-        
+     
         switch indexPath.section {
         case 0:
             setColor(color: "BE2813")
@@ -89,7 +88,8 @@ class ScheduleColorVC: UITableViewController {
     private func setColor(color: String) {
         let scheduleOptions = self.navigationController?.viewControllers[1] as? ScheduleOptionsTableViewController
         scheduleOptions?.hexColorCell = color
-        scheduleOptions?.tableView.reloadRows(at: [[3,0], [4,0]], with: .none)
+       // scheduleOptions?.tableView.reloadRows(at: [[3,0], [4,0]], with: .none)
+        scheduleOptions?.tableView.reloadData()
         self.navigationController?.popViewController(animated: true)
     }
     

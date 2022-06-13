@@ -24,6 +24,14 @@ class RealmManager {
             realm.delete(model)
         }
     }
+    
+    // TaskModel
+    func saveTaskModel(model: TaskModel) {
+        try! realm.write {
+            realm.add(model)
+        }
+    }
+    
     // Дженерик????
     func deleteTask(model: TaskModel) {
         try! realm.write {
@@ -31,6 +39,11 @@ class RealmManager {
         }
     }
     
-    
+    func updateReadyButtonTaskModel(task: TaskModel, bool: Bool) {
+        try! realm.write({
+            task.taskReady = bool
+        })
+    }
+
     private init() {}
 }

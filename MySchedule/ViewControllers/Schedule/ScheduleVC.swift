@@ -40,11 +40,12 @@ class ScheduleViewController: UIViewController {
     
     private let identifierCell = "Cell"
     
-     let localRealm = try! Realm()
-     var scheduleArray: Results<ScheduleModel>!
+    private let localRealm = try! Realm()
+    private var scheduleArray: Results<ScheduleModel>!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         tabBarController?.tabBar.isHidden = false
         tableView.reloadData()
     }
