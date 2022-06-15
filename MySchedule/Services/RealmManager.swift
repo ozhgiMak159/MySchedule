@@ -44,6 +44,31 @@ class RealmManager {
             task.taskReady = bool
         })
     }
+    
+    // ContactModel
+    
+    func deleteContact(model: ContactModel) {
+        try! realm.write {
+            realm.delete(model)
+        }
+    }
+    
+    func saveContactModel(model: ContactModel) {
+        try! realm.write {
+            realm.add(model)
+        }
+    }
+    
+    func updateContactModel(model: ContactModel, nameArray: [String], imageData: Data?) {
+        try! realm.write {
+            model.contactName = nameArray[0]
+            model.contactPhone = nameArray[1]
+            model.contactMail = nameArray[2]
+            model.contactType = nameArray[3]
+            model.contactImage = imageData
+        } 
+    }
+    
 
     private init() {}
 }

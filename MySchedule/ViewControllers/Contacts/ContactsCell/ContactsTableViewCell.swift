@@ -11,7 +11,7 @@ class ContactsTableViewCell: UITableViewCell {
     
     private let imageTeacher: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "jobs")
+        imageView.image = UIImage(systemName: "person.fill")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +33,9 @@ class ContactsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let nameLabel = UILabel(text: "Stive Jods", font: .avenirNext16())
-    private let phoneNumber = UILabel(text: "+7 555 66 77 88", font: .avenirNext14())
-    private let mailLabel = UILabel(text: "StiveJods@mail.ru", font: .avenirNext14())
+    private let nameLabel = UILabel(text: "Unknown", font: .avenirNext16())
+    private let phoneNumber = UILabel(text: "Unknown", font: .avenirNext14())
+    private let mailLabel = UILabel(text: "Unknown", font: .avenirNext14())
     
     private var stackView = UIStackView()
   
@@ -57,6 +57,17 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     
+    func configure(model: ContactModel) {
+        nameLabel.text = model.contactName
+        phoneNumber.text = model.contactPhone
+        mailLabel.text = model.contactMail
+        
+        if let data = model.contactImage, let image = UIImage(data: data) {
+            imageTeacher.image = image
+        } else {
+            imageTeacher.image = UIImage(systemName: "person.fill")
+        }
+    }
 }
 
 // MARK: - Set Constraints

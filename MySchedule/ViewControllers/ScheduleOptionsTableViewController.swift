@@ -14,7 +14,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
     
     private let headerNameArray = ["DATE AND TIME","LESSON","TEACHER","COLOR","PERIOD"]
     
-    private let cellNameArray = [
+    var cellNameArray = [
          ["Date","Time"],
          ["Name","Type","Building","Audience"],
          ["Teacher Name"],
@@ -23,7 +23,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
      ]
     
     // Если приложения крашится при повторном изменении
-    private var scheduleModel = ScheduleModel()
+    var scheduleModel = ScheduleModel()
     
     var hexColorCell = "3DACF7"
     
@@ -119,7 +119,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
                 self.scheduleModel.scheduleAudience = audience
         }
         case [2,0]:
-            pushControllers(vc: TeachersVC(), title: "Options")
+            pushControllers(vc: TeachersTableViewController(), title: "Options")
         case [3,0]:
             pushControllers(vc: ScheduleColorVC(), title: "Options")
         default:
@@ -146,6 +146,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
             alertOK(titel: "Данные успешно сохранены", message: nil)
             // Обновления ячееек после сохранения
             hexColorCell = "3DACF7"
+            cellNameArray[2][0] = "Teacher Name"
             tableView.reloadData()
         }
     }

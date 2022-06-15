@@ -14,6 +14,7 @@ class OptionsTableViewCell: UITableViewCell {
         imageView.backgroundColor = .white
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -56,12 +57,20 @@ class OptionsTableViewCell: UITableViewCell {
         repeatSwitch.onTintColor = color
     }
     
-    func cellContactConfigure(nameArray: [String], index: IndexPath) {
+    func cellContactConfigure(nameArray: [String], index: IndexPath, image: UIImage?) {
         nameCellLabel.text = nameArray[index.section]
         
-        index.section == 4
-        ? backgroundViewCell.image = UIImage(systemName: "person.fill.badge.plus")
-        : nil
+        if image == nil {
+            index.section == 4
+            ? backgroundViewCell.image = UIImage(systemName: "person.fill.badge.plus")
+            : nil
+        } else {
+            index.section == 4
+            ? backgroundViewCell.image = image
+            : nil
+            backgroundViewCell.contentMode = .scaleAspectFill
+        }
+    
     }
     
     func cellTasksConfigure(nameArray: [String], index: IndexPath, hexColor: String ) {

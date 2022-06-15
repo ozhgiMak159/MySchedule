@@ -12,11 +12,13 @@ class OptionContactTableViewController: UITableViewController {
     private let idOptionsContactCell = "idOptionsContactCell"
     private let idOptionsContactCellHeader = "idOptionsContactCellHeader"
     
-    private  let headerNameArray = ["NAME","PHONE","MAIL","TYPE","CHOOSE IMAGE"]
+    private let headerNameArray = ["NAME","PHONE","MAIL","TYPE","CHOOSE IMAGE"]
+    var cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
     
-    private let cellNameArray = [
-        "Name", "Phone", "Mail", "Type", ""
-     ]
+    var contactModel = ContactModel()
+    var imageIsChanged = false
+    var editModel = false
+    var dataImage: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class OptionContactTableViewController: UITableViewController {
         
         tableView.separatorStyle = .none
         tableView.bounces = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapp))
     }
         
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,10 +49,20 @@ class OptionContactTableViewController: UITableViewController {
         tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsContactCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsContactCellHeader)
     }
-    // 3.2 Отображаем наши данные в ячейки
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsContactCell, for: indexPath) as! OptionsTableViewCell
-        cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath)
+        
+        // Если мы заходим на страницу добавления нового пользователя
+        if editModel == false {
+            cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: nil)
+            // Если мы заходим на экран редактирования 
+        } else if let data = contactModel.contactImage, let image = UIImage(data: data) {
+            cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: image)
+        } else {
+            cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: nil)
+        }
+        
         return cell
     }
     
@@ -66,22 +80,25 @@ class OptionContactTableViewController: UITableViewController {
         return header
     }
     
-    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
         switch indexPath.section {
-        case 0: alertForCellInformation(label: cell.nameCellLabel, name: "Name Contact", placeholder: "Enter name lesson") { text in
-            print(text)
+        case 0: alertForCellInformation(label: cell.nameCellLabel, name: "Name Contact", placeholder: "Enter name lesson") { name in
+        //    self.contactModel.contactName = name
+            self.cellNameArray[0] = name
         }
-        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Phone Contact", placeholder: "Enter name lesson") { text in
-            print(text)
+        case 1: alertForCellInformation(label: cell.nameCellLabel, name: "Phone Contact", placeholder: "Enter name lesson") { phone in
+       //     self.contactModel.contactPhone = phone
+            self.cellNameArray[1] = phone
         }
-        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Mail Contact", placeholder: "Enter name lesson") { text in
-            print(text)
+        case 2: alertForCellInformation(label: cell.nameCellLabel, name: "Mail Contact", placeholder: "Enter name lesson") { mail in
+        //    self.contactModel.contactMail = mail
+            self.cellNameArray[2] = mail
         }
         case 3: AlertFriendOrTeacher(label: cell.nameCellLabel) { type in
-            print(type)
+        //    self.contactModel.contactType = type
+            self.cellNameArray[3] = type
         }
         case 4: alertPhotoOrCamera { source in
             self.chooseImagePicker(source: source)
@@ -96,6 +113,50 @@ class OptionContactTableViewController: UITableViewController {
         navigationController?.navigationBar.topItem?.title = title
         navigationController?.pushViewController(viewController, animated: true)
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc private func saveButtonTapp() {
+        
+        if cellNameArray[0] == "Name" || cellNameArray[3] == "Type" {
+            alertOK(titel: "Error", message: "Required fields: Name and Type")
+        } else if editModel == false {
+            setImageModel()
+            setModel()
+            RealmManager.shared.saveContactModel(model: contactModel)
+            contactModel = ContactModel()
+            
+            cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
+            alertOK(titel: "Данные сохранены", message: nil)
+            tableView.reloadData()
+        } else {
+            setImageModel()
+            RealmManager.shared.updateContactModel(model: contactModel, nameArray: cellNameArray, imageData: dataImage)
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func setModel() {
+        contactModel.contactName = cellNameArray[0]
+        contactModel.contactPhone = cellNameArray[1]
+        contactModel.contactMail = cellNameArray[2]
+        contactModel.contactType = cellNameArray[3]
+        contactModel.contactImage = dataImage
+    }
+    
+    private func setImageModel() {
+        
+        if imageIsChanged {
+            let cell = tableView.cellForRow(at: [4,0]) as! OptionsTableViewCell
+            
+            let image = cell.backgroundViewCell.image
+            guard let imageData = image?.pngData() else { return }
+            dataImage = imageData
+            
+            cell.backgroundViewCell.contentMode = .scaleAspectFit
+            imageIsChanged = false
+        } else {
+            dataImage = nil
+        }
     }
     
 }
@@ -117,8 +178,12 @@ extension OptionContactTableViewController:  UIImagePickerControllerDelegate, UI
         cell.backgroundViewCell.image = info[.editedImage] as? UIImage
         cell.backgroundViewCell.contentMode = .scaleAspectFill
         cell.backgroundViewCell.clipsToBounds = true
+        imageIsChanged = true
         dismiss(animated: true)
     }
     
 }
+
+// Косяк появляется фото во второй ячейки!
+// Решит вопрос с кривой версткой!
 
