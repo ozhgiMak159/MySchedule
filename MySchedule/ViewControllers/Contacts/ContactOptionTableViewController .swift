@@ -25,7 +25,7 @@ class OptionContactTableViewController: UITableViewController {
         
         setDelegate()
         
-        title = "Optional Schedule"
+        title = "Optional Contact"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
         
         tableView.separatorStyle = .none
@@ -56,11 +56,9 @@ class OptionContactTableViewController: UITableViewController {
         // Если мы заходим на страницу добавления нового пользователя
         if editModel == false {
             cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: nil)
-            // Если мы заходим на экран редактирования 
+            // Если мы заходим на экран редактирования
         } else if let data = contactModel.contactImage, let image = UIImage(data: data) {
             cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: image)
-        } else {
-            cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: nil)
         }
         
         return cell

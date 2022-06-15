@@ -150,9 +150,6 @@ extension ContactsViewController: UISearchResultsUpdating {
     }
 }
 
-
-
-
 extension ContactsViewController {
     
     private func setConstraints() {
