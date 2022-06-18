@@ -108,7 +108,7 @@ extension OptionsTableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            nameCellLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            nameCellLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 15)
         ])
         

@@ -141,12 +141,8 @@ class ScheduleOptionsTableViewController: UITableViewController {
         } else {
             scheduleModel.scheduleColor = hexColorCell
             RealmManager.shared.saveScheduleModel(model: scheduleModel)
-            // Если приложения крашится при повторном изменении
             scheduleModel = ScheduleModel()
-            alertOK(titel: "Данные успешно сохранены", message: nil)
-            // Обновления ячееек после сохранения
-            hexColorCell = "3DACF7"
-            cellNameArray[2][0] = "Teacher Name"
+            navigationController?.popViewController(animated: true)
             tableView.reloadData()
         }
     }
@@ -159,12 +155,3 @@ extension ScheduleOptionsTableViewController: SwitchRepeatProtocol {
     }
 }
 
-
-
-// Изучить
-/*
- case [1,0]:
-     alertForCellInformation(label: cell.nameCellLabel, name: "Name Lesson", placeholder: "Enter name lesson") { [weak self] name in
-         self?.scheduleModel.scheduleName = name
- }
- */

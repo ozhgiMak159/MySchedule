@@ -80,7 +80,7 @@ extension ContactsTableViewCell {
         stackView = UIStackView(
             arrangedSubviews: [phoneImageView, phoneNumber, mailImageView, mailLabel],
             axis: .horizontal,
-            distribution: .fillProportionally,
+            distribution: .equalSpacing,
             spacing: 4
         )
         
