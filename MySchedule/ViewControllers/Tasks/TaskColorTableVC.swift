@@ -29,7 +29,6 @@ class TaskColorTableVC: UITableViewController {
     private func setColor(color: String) {
         let scheduleOptions = self.navigationController?.viewControllers[1] as? OptionalTaskTableViewController
         scheduleOptions?.hexColorCell = color
-       // scheduleOptions?.tableView.reloadRows(at: [[3,0]], with: .none)
         scheduleOptions?.tableView.reloadData()
         self.navigationController?.popViewController(animated: true)
     }
@@ -37,8 +36,7 @@ class TaskColorTableVC: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         7
     }
-    
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        1
     }
@@ -49,7 +47,7 @@ class TaskColorTableVC: UITableViewController {
         tableView.register(ColorTableViewCell.self, forCellReuseIdentifier: idTaskColorCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idTaskOptionsHeader)
     }
-    // 3.2 Отображаем наши данные в ячейки
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idTaskColorCell, for: indexPath) as! ColorTableViewCell
         cell.cellConfigure(index: indexPath)
@@ -63,14 +61,13 @@ class TaskColorTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         15
     }
-    //4.1 Отображаем названия заголовок в Функции по созданию секции
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idTaskOptionsHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
     
-    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.section {

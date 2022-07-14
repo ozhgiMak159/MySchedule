@@ -9,7 +9,6 @@ import RealmSwift
 import Foundation
 
 class ScheduleModel: Object {
-    
     @Persisted var scheduleDate: Date?
     @Persisted var scheduleTime: Date?
     @Persisted var scheduleName: String = "Unknown"
@@ -20,5 +19,4 @@ class ScheduleModel: Object {
     @Persisted var scheduleColor: String = "3DACF7"
     @Persisted var scheduleRepeat: Bool = true
     @Persisted var scheduleWeekday: Int = 1
-    
 }

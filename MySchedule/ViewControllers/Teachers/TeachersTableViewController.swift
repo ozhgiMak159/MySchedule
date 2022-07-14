@@ -14,14 +14,11 @@ class TeachersTableViewController: UITableViewController {
     private var contactArray: Results<ContactModel>!
     private let teacherId = "teacherId"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setDelegate()
-        
         view.backgroundColor = .white
         title = "Teacher"
+        setDelegate()
         
         contactArray = localReal.objects(ContactModel.self).filter("contactType = 'Teacher'")
     }

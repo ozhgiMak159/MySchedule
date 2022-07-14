@@ -21,7 +21,6 @@ class OptionalTaskTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setDelegate()
         
         title = "Optional Tasks"
@@ -42,8 +41,7 @@ class OptionalTaskTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         4
     }
-    
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -66,14 +64,13 @@ class OptionalTaskTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         15
     }
-    //4.1 Отображаем названия заголовок в Функции по созданию секции
+  
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsTaskHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
     
-    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
@@ -106,11 +103,9 @@ class OptionalTaskTableViewController: UITableViewController {
             alertOK(titel: "Error", message: "Required fields: DATE, TIME, NAME")
         } else {
             taskModel.taskColor = hexColorCell
-            RealmManager.shared.saveTaskModel(model: taskModel)
-            // Если приложения крашится при повторном изменении
+            StorageManager.shared.saveTaskModel(model: taskModel)
             taskModel = TaskModel()
             alertOK(titel: "Данные успешно сохранены", message: nil)
-            // Обновления ячееек после сохранения
             hexColorCell = "1A4766"
             tableView.reloadData()
         }

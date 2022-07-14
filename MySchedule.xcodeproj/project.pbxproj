@@ -24,7 +24,7 @@
 		B5CE20A8285478BF005B263D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5CE20A7285478BF005B263D /* Realm */; };
 		B5CE20AA285478BF005B263D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B5CE20A9285478BF005B263D /* RealmSwift */; };
 		B5CE20AC285479A3005B263D /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AB285479A3005B263D /* ScheduleModel.swift */; };
-		B5CE20AF28547DE9005B263D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AE28547DE9005B263D /* RealmManager.swift */; };
+		B5CE20AF28547DE9005B263D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20AE28547DE9005B263D /* StorageManager.swift */; };
 		B5CE20B42855BBA8005B263D /* UIColor + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20B32855BBA7005B263D /* UIColor + Extension .swift */; };
 		B5CE20B62855C6B9005B263D /* AlertOK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE20B52855C6B9005B263D /* AlertOK.swift */; };
 		B5D9CB102859AEA400028684 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9CB0F2859AEA400028684 /* ContactModel.swift */; };
@@ -68,7 +68,7 @@
 		B5CE20A2285468FD005B263D /* AlertFriendOrTeacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFriendOrTeacher.swift; sourceTree = "<group>"; };
 		B5CE20A428547229005B263D /* PhotoCameraAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCameraAlert.swift; sourceTree = "<group>"; };
 		B5CE20AB285479A3005B263D /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
-		B5CE20AE28547DE9005B263D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		B5CE20AE28547DE9005B263D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B5CE20B32855BBA7005B263D /* UIColor + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension .swift"; sourceTree = "<group>"; };
 		B5CE20B52855C6B9005B263D /* AlertOK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOK.swift; sourceTree = "<group>"; };
 		B5D9CB0F2859AEA400028684 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		B5CE20AD28547DB3005B263D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE20AE28547DE9005B263D /* RealmManager.swift */,
+				B5CE20AE28547DE9005B263D /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				B5E8457428534C0D001F1900 /* ColorTableViewCell.swift in Sources */,
 				B5B776F2285077D200B2C137 /* UIFont + Extension .swift in Sources */,
 				B5E4CDCD28574580004B5E29 /* TaskModel.swift in Sources */,
-				B5CE20AF28547DE9005B263D /* RealmManager.swift in Sources */,
+				B5CE20AF28547DE9005B263D /* StorageManager.swift in Sources */,
 				B5E8457A28535A0E001F1900 /* TaskColorTableVC.swift in Sources */,
 				B5DCAD382851D85E00A49B29 /* AlertTime.swift in Sources */,
 				B5DCAD322851B93300A49B29 /* OptionsTableViewCell.swift in Sources */,

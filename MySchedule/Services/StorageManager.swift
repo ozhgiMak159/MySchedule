@@ -1,5 +1,5 @@
 //
-//  RealmManager.swift
+//  StorageManager.swift
 //  MySchedule
 //
 //  Created by Maksim  on 11.06.2022.
@@ -8,11 +8,14 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
+class StorageManager {
+    static let shared = StorageManager()
     
-    static let shared = RealmManager()
     private let realm = try! Realm()
     
+    private init() {}
+    
+    // MARK: - ScheduleModel
     func saveScheduleModel(model: ScheduleModel) {
         try! realm.write {
             realm.add(model)
@@ -25,14 +28,13 @@ class RealmManager {
         }
     }
     
-    // TaskModel
+    // MARK: - TaskModel
     func saveTaskModel(model: TaskModel) {
         try! realm.write {
             realm.add(model)
         }
     }
     
-    // Дженерик????
     func deleteTask(model: TaskModel) {
         try! realm.write {
             realm.delete(model)
@@ -45,8 +47,7 @@ class RealmManager {
         })
     }
     
-    // ContactModel
-    
+    // MARK: - ContactModel
     func deleteContact(model: ContactModel) {
         try! realm.write {
             realm.delete(model)
@@ -69,6 +70,4 @@ class RealmManager {
         } 
     }
     
-
-    private init() {}
 }

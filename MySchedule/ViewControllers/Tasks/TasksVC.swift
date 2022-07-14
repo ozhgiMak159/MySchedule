@@ -47,7 +47,6 @@ class TasksViewController: UIViewController {
         tableView.reloadData()
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
@@ -142,7 +141,7 @@ extension TasksViewController: UITableViewDelegate {
         let editingRow = tasksArray[indexPath.row]
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completionHandler in
-            RealmManager.shared.deleteTask(model: editingRow)
+            StorageManager.shared.deleteTask(model: editingRow)
             tableView.reloadData()
         }
         
@@ -172,7 +171,7 @@ extension TasksViewController: UITableViewDataSource {
 extension TasksViewController: PressReadyTaskButtonProtocol {
     func readyButtonTapped(indexPath: IndexPath) {
         let task = tasksArray[indexPath.row]
-        RealmManager.shared.updateReadyButtonTaskModel(task: task, bool: !task.taskReady)
+        StorageManager.shared.updateReadyButtonTaskModel(task: task, bool: !task.taskReady)
         tableView.reloadData()
     }
 }
@@ -215,7 +214,5 @@ extension TasksViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-    
     }
-
 }

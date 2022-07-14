@@ -81,7 +81,6 @@ class ContactsViewController: UIViewController {
             contactModel.contactPhone,
             contactModel.contactMail,
             contactModel.contactType,
-            ""
         ]
         
         contactOption.imageIsChanged = true
@@ -132,7 +131,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         let editingRow = contactArray[indexPath.row]
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completionHandler in
-            RealmManager.shared.deleteContact(model: editingRow)
+            StorageManager.shared.deleteContact(model: editingRow)
             tableView.reloadData()
         }
         

@@ -56,7 +56,6 @@ class ContactsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func configure(model: ContactModel) {
         nameLabel.text = model.contactName
         phoneNumber.text = model.contactPhone

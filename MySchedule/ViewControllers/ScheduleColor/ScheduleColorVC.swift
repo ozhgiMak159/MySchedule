@@ -16,21 +16,18 @@ class ScheduleColorVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setDelegate()
-        
         title = "Color Schedule"
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
         
         tableView.separatorStyle = .none
         tableView.bounces = false
+        setDelegate()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         7
     }
-    
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
+  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        1
     }
@@ -41,7 +38,7 @@ class ScheduleColorVC: UITableViewController {
         tableView.register(ColorTableViewCell.self, forCellReuseIdentifier: idOptionsColorCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsHeader)
     }
-    // 3.2 Отображаем наши данные в ячейки
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsColorCell, for: indexPath) as! ColorTableViewCell
         cell.cellConfigure(index: indexPath)
@@ -55,14 +52,13 @@ class ScheduleColorVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         15
     }
-    //4.1 Отображаем названия заголовок в Функции по созданию секции
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
-    
-    // Функция по выполнению действии после нажатия на ячейку
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
         switch indexPath.section {
@@ -88,7 +84,6 @@ class ScheduleColorVC: UITableViewController {
     private func setColor(color: String) {
         let scheduleOptions = self.navigationController?.viewControllers[1] as? ScheduleOptionsTableViewController
         scheduleOptions?.hexColorCell = color
-       // scheduleOptions?.tableView.reloadRows(at: [[3,0], [4,0]], with: .none)
         scheduleOptions?.tableView.reloadData()
         self.navigationController?.popViewController(animated: true)
     }

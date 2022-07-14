@@ -21,7 +21,6 @@ class TasksTableViewCell: UITableViewCell {
         return button
     }()
     
-    //  Создаем экземпляр протокола для доступа к методу
     weak var cellTaskDelegate: PressReadyTaskButtonProtocol?
     var indexPath: IndexPath?
         
@@ -48,8 +47,7 @@ class TasksTableViewCell: UITableViewCell {
             readyButton.setBackgroundImage(UIImage(systemName: "chevron.down.circle"), for: .normal)
         }
     }
-    
-    // 2 Говорим что наша кнопка выполняет действия
+
     @objc private func readyButtonTapped() {
         guard let indexPath = indexPath else { return }
         cellTaskDelegate?.readyButtonTapped(indexPath: indexPath)
@@ -65,8 +63,7 @@ extension TasksTableViewCell {
         addSubview(taskName)
         addSubview(taskDescription)
         contentView.addSubview(readyButton)
-        
-        //???
+
         taskDescription.numberOfLines = 2
     }
     

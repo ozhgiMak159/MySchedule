@@ -38,7 +38,6 @@ class OptionContactTableViewController: UITableViewController {
         5
     }
     
-    // Определяем количество ячеек в секциях таблице: В нулевой секции будет 2 ячейки!
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -52,11 +51,9 @@ class OptionContactTableViewController: UITableViewController {
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsContactCell, for: indexPath) as! OptionsTableViewCell
-        
-        // Если мы заходим на страницу добавления нового пользователя
+   
         if editModel == false {
             cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: nil)
-            // Если мы заходим на экран редактирования
         } else if let data = contactModel.contactImage, let image = UIImage(data: data) {
             cell.cellContactConfigure(nameArray: cellNameArray, index: indexPath, image: image)
         } else {
@@ -72,7 +69,7 @@ class OptionContactTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         15
     }
-    //4.1 Отображаем названия заголовок в Функции по созданию секции
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsContactCellHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
@@ -144,13 +141,13 @@ class OptionContactTableViewController: UITableViewController {
         } else if editModel == false {
             setImageModel()
             setModel()
-            RealmManager.shared.saveContactModel(model: contactModel)
+            StorageManager.shared.saveContactModel(model: contactModel)
             contactModel = ContactModel()
             navigationController?.popViewController(animated: true)
             tableView.reloadData()
         } else {
             setImageModel()
-            RealmManager.shared.updateContactModel(model: contactModel, nameArray: cellNameArray, imageData: dataImage)
+            StorageManager.shared.updateContactModel(model: contactModel, nameArray: cellNameArray, imageData: dataImage)
             navigationController?.popViewController(animated: true)
         }
     }

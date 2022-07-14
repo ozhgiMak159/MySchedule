@@ -22,7 +22,6 @@ class ScheduleOptionsTableViewController: UITableViewController {
          ["Repeat every 7 days"]
      ]
     
-    // Если приложения крашится при повторном изменении
     var scheduleModel = ScheduleModel()
     
     var hexColorCell = "3DACF7"
@@ -81,14 +80,13 @@ class ScheduleOptionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         15
     }
-    //4.1 Отображаем названия заголовок в Функции по созданию секции
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsScheduleCellHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
     
-    // Функция по выполнению действии после нажатия на ячейку
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
         
@@ -140,7 +138,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
             alertOK(titel: "Error", message: "Required fields: DATE, TIME, NAME")
         } else {
             scheduleModel.scheduleColor = hexColorCell
-            RealmManager.shared.saveScheduleModel(model: scheduleModel)
+            StorageManager.shared.saveScheduleModel(model: scheduleModel)
             scheduleModel = ScheduleModel()
             navigationController?.popViewController(animated: true)
             tableView.reloadData()
