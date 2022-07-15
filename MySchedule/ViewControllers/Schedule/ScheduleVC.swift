@@ -38,6 +38,9 @@ class ScheduleViewController: UIViewController {
         return tableView
     }()
     
+    private let dateFormatter = DateFormatter()
+    private let timeFormatter = DateFormatter()
+    
     private let identifierCell = "Cell"
     
     private let localRealm = try! Realm()
@@ -101,10 +104,17 @@ class ScheduleViewController: UIViewController {
     }
     
     private func editingModel(model: ScheduleModel) {
+        
+        timeFormatter.dateFormat = "HH:mm"
+        let timeString = timeFormatter.string(from: model.scheduleTime!)
+        
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: model.scheduleDate!)
+      
         let optionalSchedule = ScheduleOptionsTableViewController()
         optionalSchedule.scheduleModel = model
         optionalSchedule.cellNameArray = [
-            ["\(model.scheduleDate!)", "\(model.scheduleTime!)"],
+            ["\(dateString)", "\(timeString)"],
             [model.scheduleName, model.scheduleType, model.scheduleBuilding, model.scheduleAudience],
             [model.scheduleTeacher],
             [""],
