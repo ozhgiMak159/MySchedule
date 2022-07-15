@@ -81,6 +81,7 @@ class ContactsViewController: UIViewController {
             contactModel.contactPhone,
             contactModel.contactMail,
             contactModel.contactType,
+            ""
         ]
         
         contactOption.imageIsChanged = true
