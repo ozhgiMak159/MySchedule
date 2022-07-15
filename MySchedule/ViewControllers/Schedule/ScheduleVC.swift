@@ -40,6 +40,7 @@ class ScheduleViewController: UIViewController {
     
     private let dateFormatter = DateFormatter()
     private let timeFormatter = DateFormatter()
+    private let optionTabCell = OptionsTableViewCell()
     
     private let identifierCell = "Cell"
     
@@ -110,36 +111,26 @@ class ScheduleViewController: UIViewController {
         
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let dateString = dateFormatter.string(from: model.scheduleDate!)
-      
+        
+//        let on: Bool!
+//
+//        if model.scheduleRepeat {
+//          on = optionTabCell.repeatSwitch.isOn
+//        }
+        
         let optionalSchedule = ScheduleOptionsTableViewController()
         optionalSchedule.scheduleModel = model
         optionalSchedule.cellNameArray = [
             ["\(dateString)", "\(timeString)"],
             [model.scheduleName, model.scheduleType, model.scheduleBuilding, model.scheduleAudience],
             [model.scheduleTeacher],
-            [""],
+            [model.scheduleColor],
             ["\(model.scheduleRepeat)"]
             
         ]
         
         navigationController?.pushViewController(optionalSchedule, animated: true)
     }
-    
-    
-//    private func editingModel(contactModel: ContactModel) {
-//        let contactOption = OptionContactTableViewController()
-//        contactOption.contactModel = contactModel
-//        contactOption.editModel = true
-//        contactOption.cellNameArray = [
-//            contactModel.contactName,
-//            contactModel.contactPhone,
-//            contactModel.contactMail,
-//            contactModel.contactType,
-//            ""
-//        ]
-//
-//       navigationController?.pushViewController(contactOption, animated: true)
-    
     
     @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {

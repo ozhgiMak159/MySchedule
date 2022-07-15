@@ -165,6 +165,12 @@ extension TasksViewController: UITableViewDataSource {
         cell.configure(model: content)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let optionTaskVC = OptionalTaskTableViewController()
+        
+        navigationController?.pushViewController(optionTaskVC, animated: true)
+    }
 }
 
 // MARK: - PressReadyTaskButtonProtocol
