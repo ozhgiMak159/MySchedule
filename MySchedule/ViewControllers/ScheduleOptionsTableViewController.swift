@@ -120,6 +120,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
             pushControllers(vc: TeachersTableViewController(), title: "Options")
         case [3,0]:
             pushControllers(vc: ScheduleColorVC(), title: "Options")
+            
         default:
             break
         }

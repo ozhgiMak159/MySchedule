@@ -110,25 +110,48 @@ class ScheduleViewController: UIViewController {
         return timeFormatter.string(from: model)
     }
     
+    private func setColors(color: String) -> String {
+        let optionalSchedule = ScheduleOptionsTableViewController()
+        var colorNew = optionalSchedule.hexColorCell
+        colorNew = color
+        return colorNew
+    }
+    
     private func editingModel(model: ScheduleModel) {
         
         let optionalSchedule = ScheduleOptionsTableViewController()
+      //  var swits = OptionsTableViewCell()
         guard let time = model.scheduleTime, let date = model.scheduleDate else { return }
         
         let dateTime = dateOrTimeFormatter("HH:mm", time)
         let dateDay = dateOrTimeFormatter("dd.MM.yyyy", date)
         
-     //   optionalSchedule.scheduleModel = model
+//        var color = UIColor().colorFromHex("\(model.scheduleColor)")
+//        color = optionTabCell.backgroundColor!
+        
+        // optionalSchedule.scheduleModel = model
         optionalSchedule.cellNameArray = [
             ["\(dateDay)", "\(dateTime)"],
             [model.scheduleName, model.scheduleType, model.scheduleBuilding, model.scheduleAudience],
             [model.scheduleTeacher],
-            [model.scheduleColor],
+            [""],
             ["\(model.scheduleRepeat)"]
-            
         ]
         
         navigationController?.pushViewController(optionalSchedule, animated: true)
+        
+        
+        /*
+         private func setColor(color: String) {
+             let scheduleOptions = self.navigationController?.viewControllers[1] as? ScheduleOptionsTableViewController
+             scheduleOptions?.hexColorCell = color
+             scheduleOptions?.tableView.reloadData()
+             self.navigationController?.popViewController(animated: true)
+         }
+         */
+        
+        
+        
     }
     
     @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {

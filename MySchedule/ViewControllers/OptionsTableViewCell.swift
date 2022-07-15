@@ -26,7 +26,7 @@ class OptionsTableViewCell: UITableViewCell {
         return label
     }()
     
-    let repeatSwitch: UISwitch = {
+    var repeatSwitch: UISwitch = {
        let repeatSwitch = UISwitch()
         repeatSwitch.isOn = true
         repeatSwitch.isHidden = true
