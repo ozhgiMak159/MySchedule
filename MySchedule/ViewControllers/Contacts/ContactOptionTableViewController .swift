@@ -32,6 +32,7 @@ class OptionContactTableViewController: UITableViewController {
         tableView.bounces = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapp))
+        
     }
         
     override func numberOfSections(in tableView: UITableView) -> Int {

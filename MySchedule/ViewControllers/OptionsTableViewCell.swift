@@ -57,7 +57,6 @@ class OptionsTableViewCell: UITableViewCell {
         repeatSwitch.onTintColor = color
     }
     
-    //???
     func cellContactConfigure(nameArray: [String], index: IndexPath, image: UIImage?) {
         nameCellLabel.text = nameArray[index.section]
         

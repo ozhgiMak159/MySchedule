@@ -84,7 +84,7 @@ class ScheduleViewController: UIViewController {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.weekday], from: date)
         guard let weekday = components.weekday else { return }
-        print(weekday)
+        //print(weekday)
         
         let dateStart = date
         let dateEnd: Date = {
@@ -99,6 +99,37 @@ class ScheduleViewController: UIViewController {
         scheduleArray = localRealm.objects(ScheduleModel.self).filter(compound).sorted(byKeyPath: "scheduleTime")
         tableView.reloadData()
     }
+    
+    private func editingModel(model: ScheduleModel) {
+        let optionalSchedule = ScheduleOptionsTableViewController()
+        optionalSchedule.scheduleModel = model
+        optionalSchedule.cellNameArray = [
+            ["\(model.scheduleDate!)", "\(model.scheduleTime!)"],
+            [model.scheduleName, model.scheduleType, model.scheduleBuilding, model.scheduleAudience],
+            [model.scheduleTeacher],
+            [""],
+            ["\(model.scheduleRepeat)"]
+            
+        ]
+        
+        navigationController?.pushViewController(optionalSchedule, animated: true)
+    }
+    
+    
+//    private func editingModel(contactModel: ContactModel) {
+//        let contactOption = OptionContactTableViewController()
+//        contactOption.contactModel = contactModel
+//        contactOption.editModel = true
+//        contactOption.cellNameArray = [
+//            contactModel.contactName,
+//            contactModel.contactPhone,
+//            contactModel.contactMail,
+//            contactModel.contactType,
+//            ""
+//        ]
+//
+//       navigationController?.pushViewController(contactOption, animated: true)
+    
     
     @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
@@ -175,6 +206,11 @@ extension ScheduleViewController: UITableViewDataSource {
         cell.configure(model: content)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = scheduleArray[indexPath.row]
+        editingModel(model: model)
+    }
 }
 // MARK: - ScheduleViewController & Set Constraints
 extension ScheduleViewController {
@@ -221,3 +257,33 @@ extension ScheduleViewController {
         ])
     }
 }
+
+
+/*
+ 1 шаг
+ private var contactArray: Results<ContactModel>!
+ 
+ 
+ 
+ 2 шаг
+ private func editingModel(contactModel: ContactModel) {
+     let contactOption = OptionContactTableViewController()
+     contactOption.contactModel = contactModel
+     contactOption.editModel = true
+     contactOption.cellNameArray = [
+         contactModel.contactName,
+         contactModel.contactPhone,
+         contactModel.contactMail,
+         contactModel.contactType,
+         ""
+     ]
+ 
+    navigationController?.pushViewController(contactOption, animated: true)
+ 
+ 
+ 3 шаг
+ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     let model = contactArray[indexPath.row]
+     editingModel(contactModel: model)
+}
+ */
