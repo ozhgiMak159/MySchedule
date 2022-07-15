@@ -104,24 +104,23 @@ class ScheduleViewController: UIViewController {
         tableView.reloadData()
     }
     
+    private func dateOrTimeFormatter(_ strintg: String, _ model: Date) -> String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = strintg
+        return timeFormatter.string(from: model)
+    }
+    
     private func editingModel(model: ScheduleModel) {
         
-        timeFormatter.dateFormat = "HH:mm"
-        let timeString = timeFormatter.string(from: model.scheduleTime!)
-        
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let dateString = dateFormatter.string(from: model.scheduleDate!)
-        
-//        let on: Bool!
-//
-//        if model.scheduleRepeat {
-//          on = optionTabCell.repeatSwitch.isOn
-//        }
-        
         let optionalSchedule = ScheduleOptionsTableViewController()
-        optionalSchedule.scheduleModel = model
+        guard let time = model.scheduleTime, let date = model.scheduleDate else { return }
+        
+        let dateTime = dateOrTimeFormatter("HH:mm", time)
+        let dateDay = dateOrTimeFormatter("dd.MM.yyyy", date)
+        
+     //   optionalSchedule.scheduleModel = model
         optionalSchedule.cellNameArray = [
-            ["\(dateString)", "\(timeString)"],
+            ["\(dateDay)", "\(dateTime)"],
             [model.scheduleName, model.scheduleType, model.scheduleBuilding, model.scheduleAudience],
             [model.scheduleTeacher],
             [model.scheduleColor],
